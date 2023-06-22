@@ -58,7 +58,7 @@
                  
              @else
              <li class="side-nav-item">
-                <a href="apps-file-manager.html" class="side-nav-link">
+                <a href="{{ route('admin.files') }}" class="side-nav-link">
                     <i class="uil uil-folder-plus"></i>
                     <span> Gestion fichiers </span>
                 </a>

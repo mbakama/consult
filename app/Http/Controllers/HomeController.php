@@ -30,8 +30,5 @@ class HomeController extends Controller
             return view('user.dashboard'); 
         }
      
-    }
-    public function userType(){
-        return Auth::user()->userType;
-    }
+    } 
 }
