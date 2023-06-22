@@ -2,16 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
     /**
      * Display a listing of the resource.
-     */
+     */ 
+    public function __construct() {
+        $this->middleware('auth');
+    }
     public function index()
     {
-        //
+        if (Auth::user()->userType==="doctor") {
+            return view('admin.chat');
+        } else {
+            $all = User::orderBy('lastLogin', 'DESC')->get();
+            return view('user.chat', compact('all'));
+        }
     }
 
     /**

@@ -96,7 +96,7 @@
              </li>
 
              <li class="side-nav-item">
-                 <a href="apps-chat.html" class="side-nav-link">
+                 <a href="{{ route('admin.messages') }}" class="side-nav-link">
                      <i>
                          <iconify-icon icon="uil:comments-alt"></iconify-icon>
                      </i>
