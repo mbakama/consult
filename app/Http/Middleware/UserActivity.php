@@ -23,8 +23,10 @@ class UserActivity
 
             User::where('id', Auth::user()->id)->update(['lastLogin'=>now()]);
 
-            $expireAt = Carbon::now() ->addMinutes(10);
+            $expireAt = Carbon::now() ->addMinutes(2);
             Cache::put('user-is-online' . Auth::user()->id,true, $expireAt);
+
+            
         }
         return $next($request);
     }

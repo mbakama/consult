@@ -17,9 +17,11 @@ class MessageController extends Controller
     public function index()
     {
         if (Auth::user()->userType==="doctor") {
-            return view('admin.chat');
+            $all = User::whereNotIn('id',[Auth::user()->id])->where('userType','patient.e')->orderBy('lastLogin','desc')->get(); 
+            return view('admin.chat', compact('all'));
         } else {
-            $all = User::orderBy('lastLogin', 'DESC')->get();
+            // get le doctor seulement
+            $all = User::whereNotIn('id',[Auth::user()->id])->where('userType','doctor')->orderBy('lastLogin','desc')->get(); 
             return view('user.chat', compact('all'));
         }
     }

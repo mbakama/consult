@@ -53,7 +53,7 @@
     <!-- Vendor js -->
     <script src="{{ url('assets/js/vendor.min.js') }}"></script>
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <!-- Bootstrap Datepicker js -->
     <script src="{{ url('assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
 
@@ -65,5 +65,13 @@
 
     <!-- App js -->
     <script src="{{ url('assets/js/app.min.js') }}"></script>
+
+    <script> 
+  $(document).ready(function() {
+        $('.btn').click(function(){ 
+            alert('You have');
+        });
+    });
+     </script>
 </body>
 </html>
