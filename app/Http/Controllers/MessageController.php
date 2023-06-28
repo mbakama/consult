@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\Mime\Message;
 
 class MessageController extends Controller
 {
@@ -18,11 +20,23 @@ class MessageController extends Controller
     {
         if (Auth::user()->userType==="doctor") {
             $all = User::whereNotIn('id',[Auth::user()->id])->where('userType','patient.e')->orderBy('lastLogin','desc')->get(); 
-            return view('admin.chat', compact('all'));
+            $messages = DB::table('users')
+            ->join('messages', 'users.id', '=', 'messages.user_received')
+            ->join('messages', 'users.id', '=','messages.user_sent')
+            ->select('*')->get();
+            return view('admin.chat', compact('all','messages'));
         } else {
             // get le doctor seulement
+            $messages =DB::table("`users`")
+            ->Join("`messages`", function($join){
+                $join->on("`users`.`id`", "=", "`messages`.`user_received`");
+            })
+            ->Join("`messages`", function($join){
+                $join->on("`users`.`id`", "=", "`messages`.`user_sent`");
+            })
+            ->get();
             $all = User::whereNotIn('id',[Auth::user()->id])->where('userType','doctor')->orderBy('lastLogin','desc')->get(); 
-            return view('user.chat', compact('all'));
+            return view('user.chat', compact('all','messages'));
         }
     }
 
