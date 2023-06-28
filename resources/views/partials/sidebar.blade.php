@@ -44,16 +44,12 @@
          <!--- Sidemenu -->
          <ul class="side-nav">
              <li class="side-nav-title">Navigation</li>
-
              <li class="side-nav-item">
-                 <a data-bs-toggle="collapse" href="{{ route('admin.dashboard') }}" aria-expanded="false"
-                     aria-controls="sidebarDashboards" class="side-nav-link">
-                     <i class="uil uil-estate"></i>
-                     <span class="badge bg-success float-end">5</span>
-                     <span> Dashboards </span>
-                 </a>
-                 
-             </li>
+                <a href="{{ route('admin.dashboard') }}" class="side-nav-link">
+                    <i class="uil uil-estate"></i>
+                    <span> Tableau de bord </span>
+                </a>
+            </li>
              @if (Auth::user()->userType=='patient.e')
                  
              @else
@@ -64,8 +60,7 @@
                 </a>
             </li>
              @endif 
-             <li class="side-nav-title">Custom</li>
-
+        
              <li class="side-nav-item">
                  <a data-bs-toggle="collapse" href="#sidebarPages" aria-expanded="false" aria-controls="sidebarPages"
                      class="side-nav-link">
