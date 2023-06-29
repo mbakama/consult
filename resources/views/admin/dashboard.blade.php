@@ -20,7 +20,7 @@
                             <li class="breadcrumb-item active">Data Tables</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">Data Tables</h4>
+                    <h4 class="page-title">Tableau de bord</h4>
                 </div>
             </div>
         </div>
@@ -33,10 +33,12 @@
                             <div class="row g-0">
                                 <div class="col-sm-6 col-lg-3">
                                     <div class="card rounded-0 shadow-none m-0">
-                                        <div class="card-body text-center">
-                                            <i class="ri-briefcase-line text-muted font-24"></i>
-                                            <h3><span>29</span></h3>
-                                            <p class="text-muted font-15 mb-0">Total Projects</p>
+                                        <div class="card-body text-center"> 
+                                           @if ($all->count() > 0) 
+                                            <i class="ri-user-heart-line text-danger font-24"></i>
+                                            <h3><span>{{ $all->count() }}</span></h3>
+                                            <p class="text-muted font-15 mb-0">Total des patiens consultés</p>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -44,9 +46,13 @@
                                 <div class="col-sm-6 col-lg-3">
                                     <div class="card rounded-0 shadow-none m-0 border-start border-light">
                                         <div class="card-body text-center">
+                                            @if ($all->count() > 0)
+                                                
+                                          
                                             <i class="ri-list-check-2 text-muted font-24"></i>
                                             <h3><span>715</span></h3>
-                                            <p class="text-muted font-15 mb-0">Total Tasks</p>
+                                            <p class="text-muted font-15 mb-0">Total Messages recus</p>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

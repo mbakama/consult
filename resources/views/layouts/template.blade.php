@@ -22,7 +22,7 @@
    <link rel="shortcut icon" href="assets/images/favicon.ico">
 
    <!-- Plugin css -->
-   <link href="{{ url("assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css") }}" rel="stylesheet" type="text/css" />
+   <link href="{{ url('assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet" type="text/css" />
 
    <!-- Theme Config Js -->
    <script src="{{ url("assets/js/hyper-config.js") }}"></script>
@@ -36,8 +36,8 @@
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/solid.css">
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"> --}}
      <!-- App css -->
-     <link href="assets/css/app-saas.min.css" rel="stylesheet" type="text/css" id="app-style" />
-     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+     {{-- <link href="assets/css/app-saas.min.css" rel="stylesheet" type="text/css" id="app-style" /> --}}
+     <link href="{{ url('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" /> 
      <link  href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet" />
      <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/solid.css">
      <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
@@ -67,11 +67,7 @@
     <script src="{{ url('assets/js/app.min.js') }}"></script>
 
     <script> 
-  $(document).ready(function() {
-        $('.btn').click(function(){ 
-            alert('You have');
-        });
-    });
+  
      </script>
 </body>
 </html>

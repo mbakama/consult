@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,7 +27,9 @@ class HomeController extends Controller
     public function index()
     {
         if (Auth::user()->userType=== "doctor") {
-            return view('admin/dashboard');
+            $all = Message::all();
+            $all = User::where('userType','!=','doctor')->get(); 
+            return view('admin/dashboard', compact(['all','all']));
         } else{
             return view('user.dashboard'); 
         }

@@ -46,10 +46,9 @@
              <li class="side-nav-title">Navigation</li>
 
              <li class="side-nav-item">
-                 <a data-bs-toggle="collapse" href="{{ route('admin.dashboard') }}" aria-expanded="false"
-                     aria-controls="sidebarDashboards" class="side-nav-link">
+                 <a href="{{ route('admin.dashboard') }}" class="side-nav-link">
                      <i class="uil uil-estate"></i>
-                     <span class="badge bg-success float-end">5</span>
+                    
                      <span> Dashboards </span>
                  </a>
                  
@@ -60,7 +59,7 @@
              <li class="side-nav-item">
                 <a href="{{ route('admin.files') }}" class="side-nav-link">
                     <i class="uil uil-folder-plus"></i>
-                    <span> Gestion fichiers </span>
+                    <span>Gestion fichiers </span>
                 </a>
             </li>
              @endif 

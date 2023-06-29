@@ -71,7 +71,7 @@
                                             @foreach ($all as $item)
                                                 
                                           
-                                            <a href="javascript:void(0);" class="text-body">
+                                            <a href="#" class="text-body" >
                                                 <div class="d-flex align-items-start mt-1 p-2">
                                                     <img src="assets/images/users/avatar-2.jpg"
                                                         class="me-2 rounded-circle" height="48"
@@ -122,7 +122,7 @@
                 <!-- end chat users-->
 
                 <!-- chat area -->
-                <div class="col-xxl-6 col-xl-12 order-xl-2">
+                <div class="col-xxl-6 col-xl-12 order-xl-2" style="">
                     <div class="card">
                         <div class="card-body px-0 pb-0">
                             <ul class="conversation-list px-3" data-simplebar style="max-height: 554px">
@@ -133,7 +133,7 @@
                                         <i>10:00</i>
                                     </div>
                                     <div class="conversation-text">
-                                        <div class="ctext-wrap">
+                                        <div class="ctext-wrap-left">
                                             <i>Shreyu N</i>
                                             <p>Hello!</p>
                                         </div>
@@ -158,7 +158,7 @@
                                         <i>10:01</i>
                                     </div>
                                     <div class="conversation-text">
-                                        <div class="ctext-wrap">
+                                        <div class="ctext-wrap-right">
                                             <i>Dominic</i>
                                             <p>Hi, How are you? What about our next meeting?</p>
                                         </div>
@@ -183,7 +183,7 @@
                                         <i>10:01</i>
                                     </div>
                                     <div class="conversation-text">
-                                        <div class="ctext-wrap">
+                                        <div class="ctext-wrap-left">
                                             <i>Shreyu N</i>
                                             <p>Yeah everything is fine</p>
                                         </div>
@@ -208,7 +208,7 @@
                                         <i>10:02</i>
                                     </div>
                                     <div class="conversation-text">
-                                        <div class="ctext-wrap">
+                                        <div class="ctext-wrap-right">
                                             <i>Dominic</i>
                                             <p>Wow that's great</p>
                                         </div>
@@ -233,7 +233,7 @@
                                         <i>10:02</i>
                                     </div>
                                     <div class="conversation-text">
-                                        <div class="ctext-wrap">
+                                        <div class="ctext-wrap-left">
                                             <i>Shreyu N</i>
                                             <p>Let's have it today if you are free</p>
                                         </div>
@@ -258,7 +258,7 @@
                                         <i>10:03</i>
                                     </div>
                                     <div class="conversation-text">
-                                        <div class="ctext-wrap">
+                                        <div class="ctext-wrap-right">
                                             <i>Dominic</i>
                                             <p>Sure thing! let me know if 2pm works for you</p>
                                         </div>
@@ -283,7 +283,7 @@
                                         <i>10:04</i>
                                     </div>
                                     <div class="conversation-text">
-                                        <div class="ctext-wrap">
+                                        <div class="ctext-wrap-left">
                                             <i>Shreyu N</i>
                                             <p>
                                                 Sorry, I have another meeting scheduled at 2pm. Can we
@@ -311,7 +311,7 @@
                                         <i>10:04</i>
                                     </div>
                                     <div class="conversation-text">
-                                        <div class="ctext-wrap">
+                                        <div class="ctext-wrap-left">
                                             <i>Shreyu N</i>
                                             <p>
                                                 We can also discuss about the presentation talk format
@@ -339,7 +339,7 @@
                                         <i>10:05</i>
                                     </div>
                                     <div class="conversation-text">
-                                        <div class="ctext-wrap">
+                                        <div class="ctext-wrap-right">
                                             <i>Dominic</i>
                                             <p>
                                                 3pm it is. Sure, let's discuss about presentation
@@ -444,7 +444,7 @@
                                     <!-- item-->
                                     <a href="javascript:void(0);" class="dropdown-item">View full</a>
                                     <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Edit Contact Info</a>
+                                    {{-- <a href="javascript:void(0);" class="dropdown-item">Edit Contact Info</a> --}}
                                     <!-- item-->
                                     <a href="javascript:void(0);" class="dropdown-item">Remove</a>
                                 </div>

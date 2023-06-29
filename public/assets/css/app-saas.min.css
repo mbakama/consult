@@ -102,6 +102,7 @@ html[data-bs-theme=dark][data-topbar-color=light] {
     --ct-orange: #fd7e14;
     --ct-yellow: #ffc35a;
     --ct-green: #0acf97;
+    --ct-custom : #7d3cf5c2; 
     --ct-teal: #02a8b5;
     --ct-cyan: #39afd1;
     --ct-black: #000;
@@ -20264,17 +20265,18 @@ input[data-switch=dark]:checked+label {
     float: right !important;
     margin-right: 12px;
     text-align: right;
-    width: 70% !important
+    width: 70% !important;
+    color:var(--ct-white)
 }
 
 .conversation-list .odd .ctext-wrap {
-    background-color: var(--ct-light)
+    background-color: var(--ct-custom)
 }
 
 .conversation-list .odd .ctext-wrap:after {
     border-color: transparent;
-    border-left-color: var(--ct-light);
-    border-top-color: var(--ct-light);
+    border-left-color: var(--ct-custom);
+    border-top-color: var(--ct-custom);
     right: -10px;
     left: auto
 }
