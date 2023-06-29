@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('userType')->default('patient.e'); 
             $table->timestamp('lastLogin')->nullable();
+            $table->text('photo')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

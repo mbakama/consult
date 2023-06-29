@@ -17,8 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_sent');
             $table->foreign('user_received')->references('id')->on('users');
             $table->foreign('user_sent')->references('id')->on('users');
-            $table->text('contenu');
-            $table->text('photo')->nullable();
+            $table->text('contenu'); 
             $table->timestamps();
         });
     }
