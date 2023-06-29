@@ -70,11 +70,21 @@ class MessageController extends Controller
         }
     }
 
-    // public function getData($id){ 
-    //     $user = User::find($id);
+    public function getMessage($id){ 
+        // if (Auth::user()->userType==="doctor") {
+        //     $all = User::find($id);
+        //     return response()->json(view('admin.discusion',compact('all'))->render()); 
+           
+        //     // return view('admin.show_user', compact('all'));
+        // } else {
+        //     $all = User::find($id);
+        //     return response()->json(view('admin.show_user',compact('all'))->render());
+        // } 
+        $all = User::find($id);
 
-    //     return response()->json(view('admin.show_user',compact('user'))->render()); 
-    // }
+        return response()->json(view('admin.discusion',compact('all'))->render());
+        
+    }
 
     /**
      * Show the form for editing the specified resource.

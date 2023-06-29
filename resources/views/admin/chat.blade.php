@@ -128,8 +128,8 @@
 
                 <!-- chat area -->
                 <div class="col-xxl-6 col-xl-12 order-xl-2" style="">
-                    <div class="card">
-                        <div class="card-body px-0 pb-0">
+                    <div class="card" id="discusion">
+                        {{-- <div class="card-body px-0 pb-0">
                             <ul class="conversation-list px-3" data-simplebar style="max-height: 554px">
                                 <li class="clearfix">
                                     <div class="chat-avatar">
@@ -391,9 +391,9 @@
                                 </li>
                                
                             </ul>
-                        </div>
+                        </div> --}}
                         <!-- end card-body -->
-                        <div class="card-body p-0">
+                        {{-- <div class="card-body p-0">
                             <div class="row">
                                 <div class="col">
                                     <div class="mt-2 bg-light p-3">
@@ -431,7 +431,7 @@
                                 <!-- end col-->
                             </div>
                             <!-- end row -->
-                        </div>
+                        </div> --}}
                     </div>
                     <!-- end card -->
                 </div>

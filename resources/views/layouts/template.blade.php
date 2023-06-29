@@ -76,19 +76,16 @@
             .catch(function(error){
                 console.log(error);
             }); 
+        }; 
+        function getUserDetail(userId) {
             
-        //     let id = e.dataset.id;
+            axios.get('/chat/'+userId).then(function(response){
+                document.getElementById('discusion').innerHTML = response.data; 
 
-        //     $.ajax({
-        //         type:'GET',
-        //         url : "{{ route('admin.message',$item->id) }}",
-        //         data :{id:id},
-        //         success : function(data){
-        //             $('#user_detail').html(data)
-        //     }
-            
-        // });
-
+            })
+            .catch(function(error){
+                console.log(error);
+            }); 
         }; 
             
      </script>
