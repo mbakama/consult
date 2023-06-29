@@ -19,7 +19,7 @@
  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
    <!-- App favicon -->
-   <link rel="shortcut icon" href="assets/images/favicon.ico">
+   <link rel="shortcut icon" href="{{url('assets/images/favicon.ico')}}">
 
    <!-- Plugin css -->
    <link href="{{ url('assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet" type="text/css" />

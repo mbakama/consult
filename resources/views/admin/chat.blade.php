@@ -69,9 +69,13 @@
                                         <div class="card-body py-0 mb-3" data-simplebar
                                             style="max-height: 546px">
                                             @foreach ($all as $item)
+<<<<<<< HEAD
                                                 
                                           
                                             <a href="#" class="text-body" >
+=======
+                                            <a href="" class="text-body">
+>>>>>>> 6b00c1f822795277d19bdf4ce7be79b6778d026b
                                                 <div class="d-flex align-items-start mt-1 p-2">
                                                     <img src="assets/images/users/avatar-2.jpg"
                                                         class="me-2 rounded-circle" height="48"
@@ -92,13 +96,8 @@
                                                                     @else 
                                                                 <iconify-icon icon="mdi:circle" style="color: rgb(255, 112, 17); font-size:12px; margin-left:-13px; margin-bottom:-15px"></iconify-icon>
                                                                 @endif
-                                                            </span></span>
- {{-- <span class="w-25 float-end text-end">
-                                                              {{ $item->lastLogin >=now()->subMinutes(2) ? '<span><iconify-icon icon="mdi:circle" style="color: rgb(17, 255, 17);background:white; font-size:10px; border:3px solid white; padding:0;  border-radius:50%;margin-left:-13px; margin-bottom:-15px"></iconify-icon></i>
-                                                              </span>' :'<iconify-icon icon="mdi:circle" style="color: rgb(255, 112, 17); font-size:12px; margin-left:-13px; margin-bottom:-15px"></iconify-icon></i>
-                                                                    <span></span>
-                                                                  '}}                                     
-                                                                </span> --}}
+                                                                </span>
+                                                            </span>
                                                             <span class="w-75">How are you today?</span>
                                                         </p>
                                                     </div>
@@ -176,6 +175,7 @@
                                         </div>
                                     </div>
                                 </li>
+<<<<<<< HEAD
                                 <li class="clearfix">
                                     <div class="chat-avatar">
                                         <img src="assets/images/users/avatar-5.jpg" class="rounded"
@@ -384,6 +384,9 @@
                                         </div>
                                     </div>
                                 </li>
+=======
+                               
+>>>>>>> 6b00c1f822795277d19bdf4ce7be79b6778d026b
                             </ul>
                         </div>
                         <!-- end card-body -->
