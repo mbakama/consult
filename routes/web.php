@@ -26,3 +26,5 @@ Route::get('/files', [App\Http\Controllers\FileController::class, 'index'])->nam
 Route::get('messages', [App\Http\Controllers\MessageController::class,'index'])->name('admin.messages')->middleware('verified');
 Route::get('message/{id}', [App\Http\Controllers\MessageController::class,'show'])->name('admin.message')->middleware('verified');
 Route::get('chat/{id}',[MessageController::class,'getMessage'])->name('admin.message')->middleware('verified');
+Route::get('search', [App\Http\Controllers\SearchController::class,'index']);
+Route::get('search', [App\Http\Controllers\SearchController::class,'search']);

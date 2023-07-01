@@ -54,7 +54,7 @@
                                     <div class="app-search">
                                         <form>
                                             <div class="mb-2 w-100 position-relative">
-                                                <input type="search" class="form-control"
+                                                <input type="search" id="search" class="form-control"
                                                     placeholder="People, groups & messages..." />
                                                 <span class="search-icon"><iconify-icon icon="mdi:magnify"></iconify-icon></span>
                                             </div>

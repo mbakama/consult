@@ -367,7 +367,7 @@
                         <img src="assets/images/users/avatar-1.jpg" alt="user-image" width="32" class="rounded-circle"> 
                         
                             @if (Auth::check())
-                            <iconify-icon icon="mdi:circle" style="color: rgb(17, 255, 17);background:white; font-size:10px; border:3px solid white; padding:0;  border-radius:50%;margin-left:-13px; margin-bottom:-15px"></iconify-icon></i>
+                            <iconify-icon icon="mdi:circle" style="color: rgb(17, 255, 17);background:white; font-size:10px; border:2px solid white; padding:0;  border-radius:50%;margin-left:-13px; margin-bottom:-15px"></iconify-icon></i>
                             @else
                             <iconify-icon icon="mdi:circle" style="color: rgb(255, 112, 17); font-size:12px; margin-left:-13px; margin-bottom:-15px"></iconify-icon></i>
                             @endif
