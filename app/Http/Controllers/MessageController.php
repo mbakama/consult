@@ -6,7 +6,7 @@ use App\Models\User;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Symfony\Component\Mime\Message;
+use App\Models\Message;
 
 class MessageController extends Controller
 {
@@ -21,6 +21,19 @@ class MessageController extends Controller
         if (Auth::user()->userType==="doctor") {
             $all = User::whereNotIn('id',[Auth::user()->id])->where('userType','patient.e')->orderBy('lastLogin','desc')->get(); 
            
+            // $selectID = 1;
+
+            // $selectUserId = User::find($selectID);
+            // $id = $selectUserId->id;
+
+            // $cons = Message::all();
+          
+            // $cons = Message::where(function ($query) use ($id){
+            //     $query->where('user_sent', Auth::user()->id)->where('user_received', $id);
+            // })->orWhere(function ($query) use ($id){
+            //     $query->where('user_received', auth()->user()->id)->where('user_sent', $id);
+            // })->orderBy('created_at')->get();
+            // $v = strval($cons);
             return view('admin.chat', compact('all'));
         } else {
            
@@ -70,19 +83,33 @@ class MessageController extends Controller
         }
     }
 
-    public function getMessage($id){ 
-        // if (Auth::user()->userType==="doctor") {
-        //     $all = User::find($id);
-        //     return response()->json(view('admin.discusion',compact('all'))->render()); 
-           
-        //     // return view('admin.show_user', compact('all'));
-        // } else {
-        //     $all = User::find($id);
-        //     return response()->json(view('admin.show_user',compact('all'))->render());
-        // } 
-        $all = User::find($id);
+    public function getMessage(){ 
+        $selectID = User::all();
 
-        return response()->json(view('admin.discusion',compact('all'))->render());
+        foreach ($selectID as $v){
+            $s = $v->id;
+           $id = request($s);
+
+           echo $id;
+        }
+
+     
+        //  $all = request('id');
+
+        //  $v = User::where('id',$all);
+         
+
+         // $cons = Message::all();
+       
+         $cons = Message::where(function ($query) use ($id){
+             $query->where('user_sent', Auth::user()->id)->where('user_received', $id);
+         })->orWhere(function ($query) use ($id){
+             $query->where('user_received', auth()->user()->id)->where('user_sent', $id);
+         })->orderBy('created_at')->get();
+
+         return view('admin.chat', compact('cons'));
+        
+    //    return response()->json(view('admin.discusion',compact('cons','selectID'))->render());
         
     }
 

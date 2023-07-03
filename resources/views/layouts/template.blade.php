@@ -67,35 +67,35 @@
     <script src="{{ url('assets/js/app.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script> 
-        function getUserDetail(userId) {
+        // function getUserDetail(userId) {
             
-            axios.get('/message/'+userId).then(function(response){
-                document.getElementById('user_detail').innerHTML = response.data; 
+        //     axios.get('/message/'+userId).then(function(response){
+        //         document.getElementById('user_detail').innerHTML = response.data; 
 
-            })
-            .catch(function(error){
-                console.log(error);
-            }); 
-        }; 
+        //     })
+        //     .catch(function(error){
+        //         console.log(error);
+        //     }); 
+        // }; 
         function getUserDetail(userId) {
             
             axios.get('/chat/'+userId).then(function(response){
                 document.getElementById('discusion').innerHTML = response.data; 
-
+                alert(userId)
             })
             .catch(function(error){
                 console.log(error);
             }); 
         }; 
-        var route = "{{ url('/search') }}";
+        // var route = "{{ url('/search') }}";
 
-        $('#search').typeahead({
-            source: function(search, process){
-                return $.get(route , {search : search}, function(data){
-                    return process(data);
-                });
-            }
-        })
+        // $('#search').typeahead({
+        //     source: function(search, process){
+        //         return $.get(route , {search : search}, function(data){
+        //             return process(data);
+        //         });
+        //     }
+        // })
         </script>
 </body>
 </html>
