@@ -133,6 +133,7 @@
                     <!-- chat area -->
                     <div class="col-xxl-6 col-xl-12 order-xl-2" style="">
                         <div class="card" id="discusion">
+                            
                             <div class="card-body px-0 pb-0">
                             <ul class="conversation-list px-3" data-simplebar style="max-height: 554px">
                             {{-- <div class="font-20">{{ $id->name }}</div> --}}

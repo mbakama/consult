@@ -83,33 +83,19 @@ class MessageController extends Controller
         }
     }
 
-    public function getMessage(){ 
-        $selectID = User::all();
-
-        foreach ($selectID as $v){
-            $s = $v->id;
-           $id = request($s);
-
-           echo $id;
-        }
-
-     
-        //  $all = request('id');
-
-        //  $v = User::where('id',$all);
-         
-
-         // $cons = Message::all();
-       
-         $cons = Message::where(function ($query) use ($id){
-             $query->where('user_sent', Auth::user()->id)->where('user_received', $id);
-         })->orWhere(function ($query) use ($id){
-             $query->where('user_received', auth()->user()->id)->where('user_sent', $id);
-         })->orderBy('created_at')->get();
-
-         return view('admin.chat', compact('cons'));
+    public function getMessage($id){ 
         
-    //    return response()->json(view('admin.discusion',compact('cons','selectID'))->render());
+        $all = User::find($id); 
+        $id = $all->id;
+
+
+        $cons = Message::where(function ($query) use ($id){
+            $query->where('user_sent', Auth::user()->id)->where('user_received', $id);
+        })->orWhere(function ($query) use ($id){
+            $query->where('user_received', auth()->user()->id)->where('user_sent', $id);
+        })->orderBy('created_at')->get();
+
+       return response()->json(view('admin.discusion',compact('cons',))->render());
         
     }
 

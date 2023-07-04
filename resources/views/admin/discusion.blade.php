@@ -1,4 +1,23 @@
-Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum debitis error minus dolorum temporibus accusantium nostrum cupiditate ullam accusamus? Porro, sequi obcaecati maiores placeat numquam corrupti quam ex. In, sequi!
+@foreach ($cons as $message)
+
+@if ($message->user_sent != Auth::user()->id)
+{{ $message->contenu }}<br> 
+@endif
 
 
-{{ $cons }}
+@if ($message->user_received == Auth::user()->id)
+{{ $message->contenu }}<br> 
+@endif
+@if ($message->user_sent == Auth::user()->id)
+{{ $message->contenu }}<br> 
+@endif
+
+{{-- 
+@if ($message->user_sent == Auth::user()->id)
+{{ $message->contenu }}<br> 
+@elseif ($message->user_sent != Auth::user()->id)
+{{ $message->contenu }}<br>
+@endif --}}
+
+
+@endforeach
