@@ -39,9 +39,9 @@
      {{-- <link href="assets/css/app-saas.min.css" rel="stylesheet" type="text/css" id="app-style" /> --}}
      <link href="{{ url('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" /> 
      <link  href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet" />
-     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/solid.css">
      <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
      <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+     
 </head>
 <body>
     <div class="wrapper">
@@ -67,27 +67,35 @@
     <script src="{{ url('assets/js/app.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script> 
-        function getUserDetail(userId) {
+        // function getUserDetail(userId) {
             
-            axios.get('/message/'+userId).then(function(response){
-                document.getElementById('user_detail').innerHTML = response.data; 
+        //     axios.get('/message/'+userId).then(function(response){
+        //         document.getElementById('user_detail').innerHTML = response.data; 
 
-            })
-            .catch(function(error){
-                console.log(error);
-            }); 
-        }; 
+        //     })
+        //     .catch(function(error){
+        //         console.log(error);
+        //     }); 
+        // }; 
         function getUserDetail(userId) {
             
             axios.get('/chat/'+userId).then(function(response){
                 document.getElementById('discusion').innerHTML = response.data; 
-
+                alert(userId)
             })
             .catch(function(error){
                 console.log(error);
             }); 
         }; 
-            
-     </script>
+        // var route = "{{ url('/search') }}";
+
+        // $('#search').typeahead({
+        //     source: function(search, process){
+        //         return $.get(route , {search : search}, function(data){
+        //             return process(data);
+        //         });
+        //     }
+        // })
+        </script>
 </body>
 </html>
