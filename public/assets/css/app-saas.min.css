@@ -20215,11 +20215,12 @@ input[data-switch=dark]:checked+label {
 }
 
 .conversation-list .ctext-wrap {
-    background: var(--ct-light);
+    background: #c6d5dd61;
     border-radius: 3px;
     display: inline-block;
     padding: 12px;
-    position: relative
+    position: relative;
+    border:transparent
 }
 
 .conversation-list .ctext-wrap i {
@@ -20236,7 +20237,7 @@ input[data-switch=dark]:checked+label {
 }
 
 .conversation-list .ctext-wrap:after {
-    left: -11px;
+    left: -10px;
     top: 0;
     border: solid transparent;
     content: " ";
@@ -20244,10 +20245,10 @@ input[data-switch=dark]:checked+label {
     width: 0;
     position: absolute;
     pointer-events: none;
-    border-top-color: var(--ct-light);
+    border-top-color: #c6d5dd61;
     border-width: 6px;
     margin-right: -1px;
-    border-right-color: var(--ct-light)
+    border-right-color: #c6d5dd61
 }
 
 .conversation-list .conversation-text {

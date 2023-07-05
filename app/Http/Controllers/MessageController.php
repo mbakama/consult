@@ -93,10 +93,11 @@ class MessageController extends Controller
             $query->where('user_sent', Auth::user()->id)->where('user_received', $id);
         })->orWhere(function ($query) use ($id){
             $query->where('user_received', auth()->user()->id)->where('user_sent', $id);
-        })->orderBy('created_at')->get();
+        })->orderBy('created_at')->get(); 
 
-       return response()->json(view('admin.discusion',compact('cons',))->render());
-        
+    //    return response()->json(view('admin.discusion',compact('cons','all'))->render());
+        return response()->json(view('admin.discusion')->with('cons',$cons)->with('all',$all)
+        ->render());
     }
 
     /**

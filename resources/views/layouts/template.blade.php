@@ -71,6 +71,7 @@
             
             axios.get('/chat/'+userId).then(function(response){
                     document.getElementById('discusion').innerHTML = response.data; 
+                    document.getElementById('')
                 })
                 .catch(function(error){
                     console.log(error);
