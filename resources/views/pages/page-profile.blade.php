@@ -453,8 +453,9 @@
                                 <!-- end timeline content-->
 
                                 <div class="tab-pane" id="settings">
-                                    <form action="{{ route('profile_update',$profile->id) }}" method="POST">
-                                        c
+                                    <form action="{{ route('user.profile_update',$profile->id) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
                                         <h5 class="mb-4 text-uppercase"><i class="mdi mdi-account-circle me-1"></i>
                                             Personal Info</h5>
                                         <div class="row">
