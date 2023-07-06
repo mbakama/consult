@@ -29,3 +29,5 @@ Route::get('chat/{id}',[MessageController::class,'getMessage'])->name('admin.mes
 
 Route::get('list-patients',[HomeController::class,'listPatients'])->name('admin.list-patients');
 Route::get('list-patient/{id}',[HomeController::class,'getByIdPatient'])->name('admin.list-patient');
+Route::get('profile/{id}',[HomeController::class,'show'])->name('profile');
+Route::put('profile_update/{id}',[UserController::])

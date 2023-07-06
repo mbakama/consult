@@ -45,4 +45,8 @@ class HomeController extends Controller
 
         return view('admin.pages-view-profile', compact('all'));
     }
+    public function show($id){
+        $profile = User::find($id);
+        return view('pages.page-profile', compact('profile'));
+    }
 }
