@@ -35,4 +35,14 @@ class HomeController extends Controller
         }
      
     } 
+    public function listPatients(){
+        $all = User::where('userType','!=','doctor')->get(); 
+        return view('admin.pages-patients', compact('all'));
+    }
+    public function getByIdPatient($id)
+    {
+        $all = User::find($id);
+
+        return view('admin.pages-view-profile', compact('all'));
+    }
 }
