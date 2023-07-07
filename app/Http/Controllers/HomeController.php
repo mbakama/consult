@@ -28,8 +28,10 @@ class HomeController extends Controller
     {
         if (Auth::user()->userType=== "doctor") {
             $all = Message::all();
-            $all = User::where('userType','!=','doctor')->get(); 
-            return view('admin/dashboard', compact(['all','all']));
+            $all = User::where('userType','doctor')->get(); 
+            $totalH = User::where('sexe','homme')->get();
+            $totalF = User::where('sexe','femme')->whereNot('userType','doctor')->get();
+            return view('admin/dashboard', compact(['all','all','totalH','totalF']));
         } else{
             return view('user.dashboard'); 
         }
@@ -46,7 +48,7 @@ class HomeController extends Controller
         return view('admin.pages-view-profile', compact('all'));
     }
     public function show($id){
-        $profile = User::find($id);
-        return view('pages.page-profile', compact('profile'));
+        // $profile = User::find($id);
+        // return view('pages.page-profile', compact('profile'));
     }
 }

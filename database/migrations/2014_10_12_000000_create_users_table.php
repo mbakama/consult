@@ -27,6 +27,9 @@ return new class extends Migration
             $table->text('photo')->nullable();
             $table->mediumText('phone')->nullable();
             $table->date('dateNaissance');
+            $table->char('sexe',6);
+            $table->mediumText('adresse');
+            $table->mediumText('bio')->nullable();
             $table->timestamp('debut_consultation')->nullable();
             $table->timestamp('fin_consultation')->nullable();
             $table->rememberToken();

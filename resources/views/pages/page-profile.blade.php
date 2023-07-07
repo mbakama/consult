@@ -15,10 +15,10 @@
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">Hyper</a></li>
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">Pages</a></li>
-                                <li class="breadcrumb-item active">Profile 2</li>
+                                <li class="breadcrumb-item active">Mon profile</li>
                             </ol>
                         </div>
-                        <h4 class="page-title">Profile 2</h4>
+                        <h4 class="page-title">My profile</h4>
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                                         class="ms-2 ">{{ $profile->email }}</span></p>
 
                                 <p class="text-muted mb-1 font-13"><strong>Location :</strong> <span
-                                        class="ms-2">USA</span></p>
+                                        class="ms-2">{{ $profile->adresse }}</span></p>
                             </div>
 
                             <ul class="social-list list-inline mt-3 mb-0">
@@ -451,39 +451,108 @@
 
                                 </div>
                                 <!-- end timeline content-->
-
+                                       
                                 <div class="tab-pane" id="settings">
-                                    <form action="{{ route('user.profile_update',$profile->id) }}" method="POST">
+                                    <form action="{{ route('users.update',$profile->id) }}" method="POST">
                                         @csrf
                                         @method('PUT')
                                         <h5 class="mb-4 text-uppercase"><i class="mdi mdi-account-circle me-1"></i>
                                             Personal Info</h5>
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <div class="mb-3">
-                                                    <label for="firstname" class="form-label">First Name</label>
-                                                    <input type="text" class="form-control" id="firstname"
+                                                    <label for="prenom" class="form-label">First Name</label>
+                                                    <input type="text" name="prenom" class="form-control" id="prenom"
                                                         placeholder="Enter first name" value="{{ $profile->prenom }}">
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <div class="mb-3">
-                                                    <label for="lastname" class="form-label">Last Name</label>
-                                                    <input type="text" class="form-control" id="lastname"
-                                                        placeholder="Enter last name" value="{{ $profile->name }}">
+                                                    <label for="prenom" class="form-label">Name</label>
+
+                                                    <input id="name" type="text"
+                                                                 class="form-control @error('name') is-invalid @enderror" name="name"
+                                                                 value="{{ old('name') }}" placeholder="inserer ton nom" required autocomplete="name" autofocus>
+                     
+                                                             @error('name')
+                                                                 <span class="invalid-feedback" role="alert">
+                                                                     <strong>{{ $message }}</strong>
+                                                                 </span>
+                                                             @enderror
+                                                        
+                                                     </div>
+                                            </div> <!-- end col -->
+                                            <div class="col-md-4">
+                                                <div class="mb-3">
+                                                    <label for="postnom" class="form-label">Post nom</label>
+                                                    <input type="text" name="postnom" class="form-control" id="postnom"
+                                                        placeholder="Enter post nom" value="{{ $profile->postnom }}">
                                                 </div>
                                             </div> <!-- end col -->
                                         </div> <!-- end row -->
 
                                         <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="mb-3">
+                                                    <label for="phone" class="form-label">Tel:</label>
+                                                    <input type="number" name="phone" class="form-control" id="phone"
+                                                        placeholder="081453227" value="{{ $profile->phone }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div class="mb-3">
+                                                    <label for="Occupation" class="form-label">Occupation</label>
+                                                    <input type="text" name="Occupation" class="form-control" id="Occupation"
+                                                        placeholder="Avocat" value="{{ $profile->Occupation }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="mb-3">
+                                                    <label for="Occupation" class="form-label">Sexe</label>
+                                                  
+                                                        <select name="sexe" class="form-select @error('sexe') is-invalid @enderror"  id="sexe">
+                                                            <option value="femme">Femme</option>
+                                                            <option value="homme">Homme</option>
+                                                        </select> 
+                                                                 @error('sexe')
+                                                                     <span class="invalid-feedback" role="alert">
+                                                                         <strong>{{ $message }}</strong>
+                                                                     </span>
+                                                                 @enderror 
+                                                </div>
+                                            </div>
+                                        </div> 
+                                      <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="photo" class="form-label">Photo</label>
+                                                <input type="file" name="photo" class="form-control" id="photo"
+                                                placeholder="Avocat" value="{{ $profile->photo }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="mb-3">
+                                                <label for="dateNaissance" class="form-label">Date de Naissance</label>
+                                                <input type="date" name="dateNaissance" class="form-control" id="dateNaissance"
+                                                 value="{{ $profile->dateNaissance }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="mb-3">
+                                                <label for="dateNaissance" class="form-label">Adresse</label>
+                                                <input type="adresse" name="adresse" class="form-control" id="adresse"
+                                                 value="{{ $profile->adresse }}">
+                                            </div>
+                                        </div>
+                                      </div>
+                                        <div class="row">
                                             <div class="col-12">
                                                 <div class="mb-3">
                                                     <label for="userbio" class="form-label">Bio</label>
-                                                    <textarea class="form-control" id="userbio" rows="4" placeholder="Write something..."></textarea>
+                                                    <textarea name="bio" class="form-control" id="userbio" rows="4" placeholder="Write something..."></textarea>
                                                 </div>
                                             </div> <!-- end col -->
                                         </div> <!-- end row -->
-
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="mb-3">
@@ -506,103 +575,6 @@
                                                 </div>
                                             </div> <!-- end col -->
                                         </div> <!-- end row -->
-
-                                        <h5 class="mb-3 text-uppercase bg-light p-2"><i
-                                                class="mdi mdi-office-building me-1"></i> Company Info</h5>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="mb-3">
-                                                    <label for="companyname" class="form-label">Company Name</label>
-                                                    <input type="text" class="form-control" id="companyname"
-                                                        placeholder="Enter company name">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3">
-                                                    <label for="cwebsite" class="form-label">Website</label>
-                                                    <input type="text" class="form-control" id="cwebsite"
-                                                        placeholder="Enter website url">
-                                                </div>
-                                            </div> <!-- end col -->
-                                        </div> <!-- end row -->
-
-                                        <h5 class="mb-3 text-uppercase bg-light p-2"><i
-                                                class="mdi mdi-earth me-1"></i> Social</h5>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="mb-3">
-                                                    <label for="social-fb" class="form-label">Facebook</label>
-                                                    <div class="input-group">
-                                                        <span class="input-group-text"><i
-                                                                class="mdi mdi-facebook"></i></span>
-                                                        <input type="text" class="form-control" id="social-fb"
-                                                            placeholder="Url">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3">
-                                                    <label for="social-tw" class="form-label">Twitter</label>
-                                                    <div class="input-group">
-                                                        <span class="input-group-text"><i
-                                                                class="mdi mdi-twitter"></i></span>
-                                                        <input type="text" class="form-control" id="social-tw"
-                                                            placeholder="Username">
-                                                    </div>
-                                                </div>
-                                            </div> <!-- end col -->
-                                        </div> <!-- end row -->
-
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="mb-3">
-                                                    <label for="social-insta" class="form-label">Instagram</label>
-                                                    <div class="input-group">
-                                                        <span class="input-group-text"><i
-                                                                class="mdi mdi-instagram"></i></span>
-                                                        <input type="text" class="form-control" id="social-insta"
-                                                            placeholder="Url">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3">
-                                                    <label for="social-lin" class="form-label">Linkedin</label>
-                                                    <div class="input-group">
-                                                        <span class="input-group-text"><i
-                                                                class="mdi mdi-linkedin"></i></span>
-                                                        <input type="text" class="form-control" id="social-lin"
-                                                            placeholder="Url">
-                                                    </div>
-                                                </div>
-                                            </div> <!-- end col -->
-                                        </div> <!-- end row -->
-
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="mb-3">
-                                                    <label for="social-sky" class="form-label">Skype</label>
-                                                    <div class="input-group">
-                                                        <span class="input-group-text"><i
-                                                                class="mdi mdi-skype"></i></span>
-                                                        <input type="text" class="form-control" id="social-sky"
-                                                            placeholder="@username">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3">
-                                                    <label for="social-gh" class="form-label">Github</label>
-                                                    <div class="input-group">
-                                                        <span class="input-group-text"><i
-                                                                class="mdi mdi-github"></i></span>
-                                                        <input type="text" class="form-control" id="social-gh"
-                                                            placeholder="Username">
-                                                    </div>
-                                                </div>
-                                            </div> <!-- end col -->
-                                        </div> <!-- end row -->
-
                                         <div class="text-end">
                                             <button type="submit" class="btn btn-success mt-2"><i
                                                     class="mdi mdi-content-save"></i> Save</button>

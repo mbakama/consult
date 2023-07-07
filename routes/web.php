@@ -30,12 +30,12 @@ Route::get('chat/{id}',[MessageController::class,'getMessage'])->name('admin.mes
 
 Route::get('list-patients',[HomeController::class,'listPatients'])->name('admin.list-patients');
 Route::get('list-patient/{id}',[HomeController::class,'getByIdPatient'])->name('admin.list-patient');
-Route::get('/user/profile/{id}',[HomeController::class,'show'])->name('profile');
-Route::match(['put', 'patch'], '/user/profile_update/{id}',[UserController::class,'update'])->name('profile_update');
+// Route::get('/user/profile/{id}',[HomeController::class,'show'])->name('profile');
+// Route::match(['put', 'patch'], '/user/profile_update/{id}',[UserController::class,'update'])->name('profile_update');
 
 // generete all routes of UserController?
-Route::get('/users', [UserController::class,'index']);
-Route::get('/users/{id}', [UserController::class,'show']);
+Route::get('/users/', [UserController::class,'index']);
+Route::get('/users/profile/{id}', [UserController::class,'show'])->name('users.profile')->middleware('verified');
 Route::post('/users', [UserController::class,'store']);
-Route::put('/users/{id}',[UserController::class,'update']);
+Route::put('/users/profile/{id}',[UserController::class,'update'])->name('users.update')->middleware('verified');
 Route::delete('/users/{id}', [UserController::class,'destroy']);

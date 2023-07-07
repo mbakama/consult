@@ -140,6 +140,30 @@
                                              @enderror
                                         
                                      </div>
+                                     <div class="mb-3">
+                                        <select name="sexe" class="form-select @error('sexe') is-invalid @enderror"  id="sexe">
+                                            <option value="femme">Femme</option>
+                                            <option value="homme">Homme</option>
+                                        </select> 
+                                                 @error('sexe')
+                                                     <span class="invalid-feedback" role="alert">
+                                                         <strong>{{ $message }}</strong>
+                                                     </span>
+                                                 @enderror
+                                            
+                                         </div>
+                                         <div class="mb-3">
+                                            <input id="adresse" type="text"
+                                                         class="form-control @error('adresse') is-invalid @enderror" name="adresse"
+                                                         value="{{ old('adresse') }}" placeholder="inserer ton adresse" required autocomplete="adresse" autofocus>
+             
+                                                     @error('adresse')
+                                                         <span class="invalid-feedback" role="alert">
+                                                             <strong>{{ $message }}</strong>
+                                                         </span>
+                                                     @enderror
+                                                
+                                             </div>
                                 <div class="mb-3">
                                 
                                         <input id="password" type="password"

@@ -385,7 +385,7 @@
                     </div>
 
                     <!-- item-->
-                    <a href="{{ route('profile',Auth::user()->id) }}" class="dropdown-item">
+                    <a href="{{ route('users.profile',Auth::user()->id) }}" class="dropdown-item">
                         <i class="mdi mdi-account-circle me-1"></i>
                         <span>My Account</span>
                     </a>
