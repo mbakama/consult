@@ -1,0 +1,410 @@
+.daterangepicker {
+    position : absolue ;
+    couleur : hériter ;
+    couleur de fond : #fff ;
+    rayon de bordure : 4 px ;
+    bordure : 1px solide #ddd ;
+    largeur : 278 pixels ;
+    largeur max : aucune ;
+    rembourrage : 0 ;
+    marge supérieure : 7px ;
+    haut : 100px ;
+    gauche : 20px ;
+    indice z : 3001 ;
+    affichage : aucun ;
+    famille de polices : arial ;
+    taille de police : 15 px ;
+    hauteur de ligne : 1 em ;
+  }
+  
+  .daterangepicker : avant, .daterangepicker : après {
+    position : absolue ;
+    affichage : bloc en ligne ;
+    border-bottom-color : rgba(0, 0, 0, 0.2) ;
+    contenu: '';
+  }
+  
+  .daterangepicker : avant {
+    haut : -7px ;
+    bordure droite : 7 pixels transparents solides ;
+    bordure gauche : 7 pixels transparent solide ;
+    bordure inférieure : 7px solide #ccc ;
+  }
+  
+  .daterangepicker : après {
+    haut : -6px ;
+    bordure droite : 6 pixels transparents solides ;
+    bordure inférieure : 6px solide #fff ;
+    bordure gauche : 6 pixels transparents solides ;
+  }
+  
+  .daterangepicker.opensleft:before {
+    droite : 9 pixels ;
+  }
+  
+  .daterangepicker.opensleft : après {
+    droite : 10px ;
+  }
+  
+  .daterangepicker.openscenter:before {
+    gauche : 0 ;
+    droite : 0 ;
+    largeur : 0 ;
+    marge-gauche : auto ;
+    marge droite : auto ;
+  }
+  
+  .daterangepicker.openscenter : après {
+    gauche : 0 ;
+    droite : 0 ;
+    largeur : 0 ;
+    marge-gauche : auto ;
+    marge droite : auto ;
+  }
+  
+  .daterangepicker.opensright:before {
+    gauche : 9px ;
+  }
+  
+  .daterangepicker.opensright:après {
+    gauche : 10px ;
+  }
+  
+  .daterangepicker.drop-up {
+    marge supérieure : -7px ;
+  }
+  
+  .daterangepicker.drop-up:before {
+    haut : initiale ;
+    bas : -7px ;
+    bordure inférieure : initiale ;
+    border-top : 7px solide #ccc ;
+  }
+  
+  .daterangepicker.drop-up : après {
+    haut : initiale ;
+    bas : -6px ;
+    bordure inférieure : initiale ;
+    border-top : 6px solide #fff ;
+  }
+  
+  .daterangepicker.single .daterangepicker .ranges, .daterangepicker.single .drp-calendar {
+    flotteur : aucun ;
+  }
+  
+  .daterangepicker.single .drp-selected {
+    affichage : aucun ;
+  }
+  
+  .daterangepicker.show-calendar .drp-calendar {
+    bloc de visualisation;
+  }
+  
+  .daterangepicker.show-calendar .drp-boutons {
+    bloc de visualisation;
+  }
+  
+  .daterangepicker.auto-apply .drp-boutons {
+    affichage : aucun ;
+  }
+  
+  .daterangepicker .drp-calendrier {
+    affichage : aucun ;
+    largeur maximale : 270px ;
+  }
+  
+  .daterangepicker .drp-calendar.left {
+    rembourrage : 8px 0 8px 8px ;
+  }
+  
+  .daterangepicker .drp-calendar.right {
+    rembourrage : 8px ;
+  }
+  
+  .daterangepicker .drp-calendar.single .calendar-table {
+    bordure : aucune ;
+  }
+  
+  .daterangepicker .calendar-table .next span, .daterangepicker .calendar-table .prev span {
+    couleur : #fff ;
+    bordure : noir uni ;
+    largeur de bordure : 0 2px 2px 0 ;
+    rayon de bordure : 0 ;
+    affichage : bloc en ligne ;
+    rembourrage : 3px ;
+  }
+  
+  .daterangepicker .calendar-table .next span {
+    transformer : faire pivoter (-45 degrés) ;
+    -webkit-transform : rotation (-45 degrés) ;
+  }
+  
+  .daterangepicker .calendar-table .prev span {
+    transformer : faire pivoter (135 degrés) ;
+    -webkit-transform : rotation (135 degrés) ;
+  }
+  
+  .daterangepicker .calendar-table th, .daterangepicker .calendar-table td {
+    espace blanc : nowrap ;
+    aligner le texte : centrer ;
+    alignement vertical : milieu ;
+    largeur min : 32 px ;
+    largeur : 32px ;
+    hauteur : 24px ;
+    hauteur de ligne : 24 px ;
+    taille de police : 12 px ;
+    rayon de bordure : 4 px ;
+    bordure : 1 pixel solide transparent ;
+    espace blanc : nowrap ;
+    curseur : pointeur ;
+  }
+  
+  .daterangepicker .calendar-table {
+    bordure : 1px solide #fff ;
+    rayon de bordure : 4 px ;
+    couleur de fond : #fff ;
+  }
+  
+  .daterangepicker .calendar-table table {
+    largeur : 100 % ;
+    marge : 0 ;
+    espacement des bordures : 0 ;
+    border-collapse : effondrement ;
+  }
+  
+  .daterangepicker td.available:hover, .daterangepicker th.available:hover {
+    couleur de fond : #eee ;
+    couleur de bordure : transparente ;
+    couleur : hériter ;
+  }
+  
+  .daterangepicker td.week, .daterangepicker th.week {
+    taille de police : 80 % ;
+    couleur : #ccc ;
+  }
+  
+  .daterangepicker td.off, .daterangepicker td.off.in-range, .daterangepicker td.off.start-date, .daterangepicker td.off.end-date {
+    couleur de fond : #fff ;
+    couleur de bordure : transparente ;
+    couleur : #999 ;
+  }
+  
+  .daterangepicker td.in-range {
+    couleur de fond : #ebf4f8 ;
+    couleur de bordure : transparente ;
+    couleur : #000 ;
+    rayon de bordure : 0 ;
+  }
+  
+  .daterangepicker td.start-date {
+    rayon de bordure : 4px 0 0 4px ;
+  }
+  
+  .daterangepicker td.end-date {
+    rayon de bordure : 0 4px 4px 0 ;
+  }
+  
+  .daterangepicker td.start-date.end-date {
+    rayon de bordure : 4 px ;
+  }
+  
+  .daterangepicker td.active, .daterangepicker td.active:hover {
+    couleur d'arrière-plan : #357ebd ;
+    couleur de bordure : transparente ;
+    couleur : #fff ;
+  }
+  
+  .daterangepicker th.month {
+    largeur : automatique ;
+  }
+  
+  .daterangepicker td.disabled, .daterangepicker option.disabled {
+    couleur : #999 ;
+    curseur : non autorisé ;
+    texte-décoration : ligne traversante ;
+  }
+  
+  .daterangepicker select.monthselect, .daterangepicker select.yearselect {
+    taille de police : 12 px ;
+    rembourrage : 1px ;
+    hauteur : automatique ;
+    marge : 0 ;
+    curseur : par défaut ;
+  }
+  
+  .daterangepicker select.monthselect {
+    marge droite : 2 % ;
+    largeur : 56 % ;
+  }
+  
+  .daterangepicker select.yearselect {
+    largeur : 40 % ;
+  }
+  
+  .daterangepicker select.hourselect, .daterangepicker select.minuteselect, .daterangepicker select.secondselect, .daterangepicker select.ampmselect {
+    largeur : 50px ;
+    marge : 0 automatique ;
+    arrière-plan : #eee ;
+    bordure : 1px solide #eee ;
+    rembourrage : 2px ;
+    contour : 0 ;
+    taille de police : 12 px ;
+  }
+  
+  .daterangepicker .calendar-time {
+    aligner le texte : centrer ;
+    marge : 4px auto 0 auto ;
+    hauteur de ligne : 30 px ;
+    position : relative ;
+  }
+  
+  .daterangepicker .calendar-time select.disabled {
+    couleur : #ccc ;
+    curseur : non autorisé ;
+  }
+  
+  .daterangepicker .drp-boutons {
+    clarifier les deux;
+    aligner le texte : à droite ;
+    rembourrage : 8px ;
+    border-top : 1px solide #ddd ;
+    affichage : aucun ;
+    hauteur de ligne : 12 px ;
+    alignement vertical : milieu ;
+  }
+  
+  .daterangepicker .drp-selected {
+    affichage : bloc en ligne ;
+    taille de police : 12 px ;
+    rembourrage à droite : 8 px ;
+  }
+  
+  .daterangepicker .drp-boutons .btn {
+    marge gauche : 8px ;
+    taille de police : 12 px ;
+    font-weight : gras ;
+    rembourrage : 4px 8px ;
+  }
+  
+  .daterangepicker.show-ranges.single.rtl .drp-calendar.left {
+    bordure droite : 1px solide #ddd ;
+  }
+  
+  .daterangepicker.show-ranges.single.ltr .drp-calendar.left {
+    bordure gauche : 1px solide #ddd ;
+  }
+  
+  .daterangepicker.show-ranges.rtl .drp-calendar.right {
+    bordure droite : 1px solide #ddd ;
+  }
+  
+  .daterangepicker.show-ranges.ltr .drp-calendar.left {
+    bordure gauche : 1px solide #ddd ;
+  }
+  
+  .daterangepicker .ranges {
+    flotteur : aucun ;
+    aligner le texte : à gauche ;
+    marge : 0 ;
+  }
+  
+  .daterangepicker.show-calendar .ranges {
+    marge supérieure : 8px ;
+  }
+  
+  .daterangepicker .ranges ul {
+    style de liste : aucun ;
+    marge : 0 automatique ;
+    rembourrage : 0 ;
+    largeur : 100 % ;
+  }
+  
+  .daterangepicker .ranges li {
+    taille de police : 12 px ;
+    rembourrage : 8px 12px ;
+    curseur : pointeur ;
+  }
+  
+  .daterangepicker .ranges li:hover {
+    couleur de fond : #eee ;
+  }
+  
+  .daterangepicker .ranges li.active {
+    couleur de fond : #08c ;
+    couleur : #fff ;
+  }
+  
+  /* Style d'écran plus grand */
+  @media (largeur minimale : 564px) {
+    .daterangepicker {
+      largeur : automatique ;
+    }
+  
+    .daterangepicker .ranges ul {
+      largeur : 140px ;
+    }
+  
+    .daterangepicker.single .ranges ul {
+      largeur : 100 % ;
+    }
+  
+    .daterangepicker.single .drp-calendar.left {
+      clair : aucun ;
+    }
+  
+    .daterangepicker.single .ranges, .daterangepicker.single .drp-calendar {
+      flotteur : gauche ;
+    }
+  
+    .daterangepicker {
+      direction : litre ;
+      aligner le texte : à gauche ;
+    }
+  
+    .daterangepicker .drp-calendar.left {
+      clair : gauche ;
+      marge-droite : 0 ;
+    }
+  
+    .daterangepicker .drp-calendar.left .calendar-table {
+      bordure droite : aucune ;
+      border-top-right-radius : 0 ;
+      border-bottom-right-radius : 0 ;
+    }
+  
+    .daterangepicker .drp-calendar.right {
+      marge-gauche : 0 ;
+    }
+  
+    .daterangepicker .drp-calendar.right .calendar-table {
+      bordure gauche : aucune ;
+      border-top-left-radius : 0 ;
+      border-bottom-left-radius : 0 ;
+    }
+  
+    .daterangepicker .drp-calendar.left .calendar-table {
+      rembourrage à droite : 8 px ;
+    }
+  
+    .daterangepicker .ranges, .daterangepicker .drp-calendar {
+      flotteur : gauche ;
+    }
+  }
+  
+  @media (largeur minimale : 730px) {
+    .daterangepicker .ranges {
+      largeur : automatique ;
+    }
+  
+    .daterangepicker .ranges {
+      flotteur : gauche ;
+    }
+  
+    .daterangepicker.rtl .ranges {
+      Flotter à droite;
+    }
+  
+    .daterangepicker .drp-calendar.left {
+      clair : aucun !important ;
+    }
+  }

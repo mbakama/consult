@@ -28,7 +28,7 @@
                 <div class="col-xl-4 col-lg-5">
                     <div class="card text-center">
                         <div class="card-body">
-                            <img src="{{ asset('assets/images/users/avatar-1.jpg') }}" class="rounded-circle avatar-lg img-thumbnail"
+                            <img src="{{ asset('storage/'.$profile->photo)}}" class="rounded-circle avatar-lg img-thumbnail"
                                 alt="profile-image">
 
                             <h4 class="mb-0 mt-2">{{ $profile->name }} {{ $profile->prenom }}</h4>
@@ -40,11 +40,13 @@
                             <div class="text-start mt-3">
                                 <h4 class="font-13 text-uppercase">About Me :</h4>
                                 <p class="text-muted font-13 mb-3">
-                                    Hi I'm Johnathn Deo,has been the industry's standard dummy text ever since the
-                                    1500s, when an unknown printer took a galley of type.
+                                   {{ $profile->bio }}
                                 </p>
                                 <p class="text-muted mb-2 font-13"><strong>Full Name :</strong> <span
-                                        class="ms-2">{{ $profile->name }} {{ $profile->prenom }}  {{ $profile->postnom }}</span></p>
+                                        class="ms-2 uppercase">{{ $profile->getNameInUppercase() }} {{ $profile->prenom }}  {{ $profile->postnom }}
+                                    
+                                    </span>
+                                </p>
 
                                 <p class="text-muted mb-2 font-13"><strong>Mobile : {{ $profile->PhoneNumber() }}</strong><span class="ms-2"></span></p>
 
@@ -331,7 +333,7 @@
                                     <!-- Story Box-->
                                     <div class="border border-light rounded p-2 mb-3">
                                         <div class="d-flex">
-                                            <img class="me-2 rounded-circle" src="assets/images/users/avatar-3.jpg"
+                                            <img class="me-2 rounded-circle" src="{{ asset('assets/images/users/avatar-3.jpg') }}"
                                                 alt="Generic placeholder image" height="32">
                                             <div>
                                                 <h5 class="m-0">Jeremy Tomlinson</h5>
@@ -340,11 +342,11 @@
                                         </div>
                                         <p>Story based around the idea of time lapse, animation to post soon!</p>
 
-                                        <img src="assets/images/small/small-1.jpg" alt="post-img"
+                                        <img src="{{ asset('assets/images/small/small-1.jpg') }}" alt="post-img"
                                             class="rounded me-1" height="60" />
-                                        <img src="assets/images/small/small-2.jpg" alt="post-img"
+                                        <img src="{{ asset('assets/images/small/small-2.jpg') }}" alt="post-img"
                                             class="rounded me-1" height="60" />
-                                        <img src="assets/images/small/small-3.jpg" alt="post-img" class="rounded"
+                                        <img src="{{ asset('assets/images/small/small-3.jpg') }}" alt="post-img" class="rounded"
                                             height="60" />
 
                                         <div class="mt-2">
@@ -360,7 +362,7 @@
                                     <!-- Story Box-->
                                     <div class="border border-light rounded p-2 mb-3">
                                         <div class="d-flex">
-                                            <img class="me-2 rounded-circle" src="assets/images/users/avatar-4.jpg"
+                                            <img class="me-2 rounded-circle" src="{{ asset('assets/images/users/avatar-4.jpg') }}"
                                                 alt="Generic placeholder image" height="32">
                                             <div>
                                                 <h5 class="m-0">Thelma Fridley</h5>
@@ -379,7 +381,7 @@
                                         <div class="mx-n2 p-2 mt-3 bg-light">
                                             <div class="d-flex">
                                                 <img class="me-2 rounded-circle"
-                                                    src="assets/images/users/avatar-3.jpg"
+                                                    src="{{ asset('assets/images/users/avatar-3.jpg') }}"
                                                     alt="Generic placeholder image" height="32">
                                                 <div>
                                                     <h5 class="mt-0">Jeremy Tomlinson <small class="text-muted">3
@@ -393,7 +395,7 @@
 
                                                     <div class="d-flex mt-3">
                                                         <a class="pe-2" href="#">
-                                                            <img src="assets/images/users/avatar-4.jpg"
+                                                            <img src="{{ asset('assets/images/users/avatar-4.jpg') }}"
                                                                 class="rounded-circle" alt="Generic placeholder image"
                                                                 height="32">
                                                         </a>
@@ -409,8 +411,8 @@
 
                                             <div class="d-flex mt-2">
                                                 <a class="pe-2" href="#">
-                                                    <img src="assets/images/users/avatar-1.jpg" class="rounded-circle"
-                                                        alt="Generic placeholder image" height="32">
+                                                    <img src="{{ asset('storage/'. $profile->photo) }}" class="rounded-circle"
+                                                        alt="Generic placeholder image" height="32" width="32">
                                                 </a>
                                                 <div class="w-100">
                                                     <input type="text" id="simpleinput"
@@ -428,7 +430,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- Story Box-->
+                                    {{-- <!-- Story Box-->
                                     <div class="border border-light p-2 mb-3">
                                         <div class="d-flex">
                                             <img class="me-2 rounded-circle" src="assets/images/users/avatar-6.jpg"
@@ -442,7 +444,7 @@
 
                                         <iframe src='https://player.vimeo.com/video/87993762' height='300'
                                             class="img-fluid border-0"></iframe>
-                                    </div>
+                                    </div> --}}
 
                                     <div class="text-center">
                                         <a href="javascript:void(0);" class="text-danger"><i
@@ -453,7 +455,7 @@
                                 <!-- end timeline content-->
                                        
                                 <div class="tab-pane" id="settings">
-                                    <form action="{{ route('users.update',$profile->id) }}" method="POST">
+                                    <form action="{{ route('users.update',$profile->id) }}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         @method('PUT')
                                         <h5 class="mb-4 text-uppercase"><i class="mdi mdi-account-circle me-1"></i>
@@ -472,7 +474,7 @@
 
                                                     <input id="name" type="text"
                                                                  class="form-control @error('name') is-invalid @enderror" name="name"
-                                                                 value="{{ old('name') }}" placeholder="inserer ton nom" required autocomplete="name" autofocus>
+                                                                 value="{{$profile->name}}" placeholder="inserer ton nom" required autocomplete="name" autofocus>
                      
                                                              @error('name')
                                                                  <span class="invalid-feedback" role="alert">
@@ -527,7 +529,7 @@
                                             <div class="mb-3">
                                                 <label for="photo" class="form-label">Photo</label>
                                                 <input type="file" name="photo" class="form-control" id="photo"
-                                                placeholder="Avocat" value="{{ $profile->photo }}">
+                                                 value="{{ $profile->photo }}">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
@@ -549,7 +551,9 @@
                                             <div class="col-12">
                                                 <div class="mb-3">
                                                     <label for="userbio" class="form-label">Bio</label>
-                                                    <textarea name="bio" class="form-control" id="userbio" rows="4" placeholder="Write something..."></textarea>
+                                                    <textarea name="bio" class="form-control" id="userbio" rows="4" placeholder="Write something...">
+                                                        {{ $profile->bio }}
+                                                    </textarea>
                                                 </div>
                                             </div> <!-- end col -->
                                         </div> <!-- end row -->

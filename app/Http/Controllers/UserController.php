@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ImageUser;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Nette\Utils\Image;
 
 class UserController extends Controller
 {
@@ -63,25 +66,40 @@ class UserController extends Controller
             'dateNaissance'=>['required','date'],
             'sexe'=>['required','string','max:6'], 
             'adresse'=>['required','string'], 
-            'bio'=>['string']
+            'bio'=>['string'],
+            'photo'=>['required','image','mimes:jpg,png,jpeg','max:2048']
         ]);
-   
-
+       
+        if (empty($request->file('photo'))) {
+            return back();
+        } else{
+        $name = $request->file('photo')->getClientOriginalName(); 
+        $path = $request->file('photo')->storeAs('images',$name,'public');
+        // $path = $request->file('photo')->store('')
+       
+        // $image = new ImageUser();
+        // $image->path = $path;
+        
         $update = User::find($id);
-        $update->update([
+        $update->update(
+            [
             'name' => $request->name,
-            'prenom'=> $request->prenom,
+            'prenom'=>$request->prenom,
             'postnom'=>$request->postnom,
-            'dateNaissance'=>$request->dateNaissance,
-            'phone'=>$request->phone,
-            'sexe'=>$request->sexe,
-            'adresse'=>$request->adresse,
             'Occupation'=>$request->Occupation,
+            'phone'=>$request->phone,
+            'dateNaissance'=>$request->dateNaissance,
+            'sexe'=>$request->sexe, 
+            'adresse'=>$request->adresse, 
             'bio'=>$request->bio,
-        ]);
+            'photo'=>$path
+        ]
+    );
+        //  $update->ImageUser()->save($image);
         
         return back()->with('message','information updated');
     }
+}
 
     /**
      * Remove the specified resource from storage.

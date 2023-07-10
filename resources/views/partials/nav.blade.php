@@ -364,7 +364,7 @@
             <li class="dropdown">
                 <a class="nav-link dropdown-toggle arrow-none nav-user px-2" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                     <span class="account-user-avatar">
-                        <img src="{{ url('assets/images/users/avatar-1.jpg') }}" alt="user-image" width="32" class="rounded-circle"> 
+                        <img src="{{ asset('storage/'.Auth::user()->photo)}}" alt="user-image" width="40" height="40" class="rounded-circle"> 
                         
                             @if (Auth::check())
                             <iconify-icon icon="mdi:circle" style="color: rgb(17, 255, 17);background:white; font-size:10px; border:2px solid white; padding:0;  border-radius:50%;margin-left:-13px; margin-bottom:-15px"></iconify-icon></i>
@@ -374,7 +374,7 @@
                            
                     </span>
                     <span class="d-lg-flex flex-column gap-1 d-none">
-                        <h5 class="my-0">{{ Auth::user()->name }}</h5>
+                        <h5 class="my-0">{{ Auth::user()->prenom }}</h5>
                         <h6 class="my-0 fw-normal">{{ Auth::user()->userType }}</h6>
                     </span>
                 </a>
