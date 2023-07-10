@@ -1,14 +1,26 @@
  <!-- ========== Left Sidebar Start ========== -->
  <div class="leftside-menu">
      <!-- Brand Logo Light -->
-     <a href="index.html" class="logo logo-light">
-         <span class="logo-lg">
-             <img src="{{ url('assets/images/logo.png') }}" alt="logo" />
-         </span>
-         <span class="logo-sm">
-             <img src="{{ url('assets/images/logo-sm.png') }}" alt="small logo" />
-         </span>
-     </a>
+     @if (Auth::user()->userType=="doctor")
+     <a href="{{ route('dashboard') }}" class="logo logo-light">
+        <span class="logo-lg">
+            <img src="{{ url('assets/images/logo.png') }}" alt="logo" />
+        </span>
+        <span class="logo-sm">
+            <img src="{{ url('assets/images/logo-sm.png') }}" alt="small logo" />
+        </span>
+    </a>
+     @else
+     <a href="{{ route('dashboard') }}" class="logo logo-light">
+        <span class="logo-lg">
+            <img src="{{ url('assets/images/logo.png') }}" alt="logo" />
+        </span>
+        <span class="logo-sm">
+            <img src="{{ url('assets/images/logo-sm.png') }}" alt="small logo" />
+        </span>
+    </a>
+     @endif
+    
 
      <!-- Brand Logo Dark -->
      <a href="index.html" class="logo logo-dark">
@@ -45,7 +57,7 @@
          <ul class="side-nav">
              <li class="side-nav-title">Navigation</li>
              <li class="side-nav-item">
-                 <a href="{{ route('admin.dashboard') }}" class="side-nav-link">
+                 <a href="{{ route('dashboard') }}" class="side-nav-link">
                      <i class="uil uil-estate"></i>
                     
                      <span> Tableau de bord </span>

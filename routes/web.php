@@ -22,7 +22,7 @@ Route::get('/', function () {
 
 Auth::routes(['verify'=>true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.dashboard')->middleware('verified');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard')->middleware('verified');
 Route::get('/files', [App\Http\Controllers\FileController::class, 'index'])->name('admin.files')->middleware('verified');
 Route::get('messages', [App\Http\Controllers\MessageController::class,'index'])->name('admin.messages')->middleware('verified');
 Route::get('message/{id}', [App\Http\Controllers\MessageController::class,'show'])->name('admin.message')->middleware('verified');
