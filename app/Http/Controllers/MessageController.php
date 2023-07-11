@@ -83,17 +83,17 @@ class MessageController extends Controller
         }
     }
 
-    public function getMessage(){ 
-        $selectID = User::all();
+    public function getMessage($id){ 
+        // $selectID = User::all();
 
-        foreach ($selectID as $v){
-            $s = $v->id;
-           $id = request($s);
+        // foreach ($selectID as $v){
+        //     $s = $v->id;
+        //    $id = request($s);
 
-           echo $id;
-        }
+        //    echo $id;
+        // }
 
-     
+         $id_user = User::find($id);
         //  $all = request('id');
 
         //  $v = User::where('id',$all);
@@ -101,15 +101,15 @@ class MessageController extends Controller
 
          // $cons = Message::all();
        
-         $cons = Message::where(function ($query) use ($id){
-             $query->where('user_sent', Auth::user()->id)->where('user_received', $id);
-         })->orWhere(function ($query) use ($id){
-             $query->where('user_received', auth()->user()->id)->where('user_sent', $id);
+         $cons = Message::where(function ($query) use ($id_user){
+             $query->where('user_sent', Auth::user()->id)->where('user_received', $id_user);
+         })->orWhere(function ($query) use ($id_user){
+             $query->where('user_received', auth()->user()->id)->where('user_sent', $id_user);
          })->orderBy('created_at')->get();
 
-         return view('admin.chat', compact('cons'));
+        //  return view('admin.chat', compact('cons'));
         
-    //    return response()->json(view('admin.discusion',compact('cons','selectID'))->render());
+       return response()->json(view('admin.discusion',compact('cons'))->render());
         
     }
 
