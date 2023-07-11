@@ -1,22 +1,34 @@
  <!-- ========== Left Sidebar Start ========== -->
  <div class="leftside-menu">
      <!-- Brand Logo Light -->
-     <a href="index.html" class="logo logo-light">
-         <span class="logo-lg">
-             <img src="assets/images/logo.png" alt="logo" />
-         </span>
-         <span class="logo-sm">
-             <img src="assets/images/logo-sm.png" alt="small logo" />
-         </span>
-     </a>
+     @if (Auth::user()->userType=="doctor")
+     <a href="{{ route('dashboard') }}" class="logo logo-light">
+        <span class="logo-lg">
+            <img src="{{ url('assets/images/logo.png') }}" alt="logo" />
+        </span>
+        <span class="logo-sm">
+            <img src="{{ url('assets/images/logo-sm.png') }}" alt="small logo" />
+        </span>
+    </a>
+     @else
+     <a href="{{ route('dashboard') }}" class="logo logo-light">
+        <span class="logo-lg">
+            <img src="{{ url('assets/images/logo.png') }}" alt="logo" />
+        </span>
+        <span class="logo-sm">
+            <img src="{{ url('assets/images/logo-sm.png') }}" alt="small logo" />
+        </span>
+    </a>
+     @endif
+    
 
      <!-- Brand Logo Dark -->
      <a href="index.html" class="logo logo-dark">
          <span class="logo-lg">
-             <img src="assets/images/logo-dark.png" alt="dark logo" />
+             <img src="{{ url('assets/images/logo-dark.png') }}" alt="dark logo" />
          </span>
          <span class="logo-sm">
-             <img src="assets/images/logo-dark-sm.png" alt="small logo" />
+             <img src="{{ url('assets/images/logo-dark-sm.png') }}" alt="small logo" />
          </span>
      </a>
 
@@ -35,7 +47,7 @@
          <!-- Leftbar User -->
          <div class="leftbar-user">
              <a href="pages-profile.html">
-                 <img src="assets/images/users/avatar-1.jpg" alt="user-image" height="42"
+                 <img src="{{ url('assets/images/users/avatar-1.jpg') }}" alt="user-image" height="42"
                      class="rounded-circle shadow-sm" />
                  <span class="leftbar-user-name mt-2">Dominic Keller</span>
              </a>
@@ -45,7 +57,7 @@
          <ul class="side-nav">
              <li class="side-nav-title">Navigation</li>
              <li class="side-nav-item">
-                 <a href="{{ route('admin.dashboard') }}" class="side-nav-link">
+                 <a href="{{ route('dashboard') }}" class="side-nav-link">
                      <i class="uil uil-estate"></i>
                     
                      <span> Tableau de bord </span>
@@ -75,7 +87,7 @@
                  <div class="collapse" id="sidebarPages">
                      <ul class="side-nav-second-level">
                          <li>
-                             <a href="pages-dgm.html">Details DGM</a>
+                             <a href="{{ route('admin.list-patients') }}">Gestion des patients</a>
                          </li>
                          <li>
                              <a href="pages-tva.html">Details TVA</a>

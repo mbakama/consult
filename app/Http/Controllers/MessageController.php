@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use DB;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Message;
@@ -84,6 +84,7 @@ class MessageController extends Controller
     }
 
     public function getMessage($id){ 
+<<<<<<< HEAD
         // $selectID = User::all();
 
         // foreach ($selectID as $v){
@@ -110,7 +111,22 @@ class MessageController extends Controller
         //  return view('admin.chat', compact('cons'));
         
        return response()->json(view('admin.discusion',compact('cons'))->render());
+=======
+>>>>>>> 3961e63d9666be3e56ae9f35d183e1456971981c
         
+        $all = User::find($id); 
+        $id = $all->id;
+
+
+        $cons = Message::where(function ($query) use ($id){
+            $query->where('user_sent', Auth::user()->id)->where('user_received', $id);
+        })->orWhere(function ($query) use ($id){
+            $query->where('user_received', auth()->user()->id)->where('user_sent', $id);
+        })->orderBy('created_at')->get(); 
+
+    //    return response()->json(view('admin.discusion',compact('cons','all'))->render());
+        return response()->json(view('admin.discusion')->with('cons',$cons)->with('all',$all)
+        ->render());
     }
 
     /**

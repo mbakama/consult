@@ -103,7 +103,18 @@
                                         @enderror
                                    
                                 </div>
-
+                                <div class="mb-3">
+                                    <input id="prenom" type="text"
+                                                 class="form-control @error('prenom') is-invalid @enderror" name="prenom"
+                                                 value="{{ old('prenom') }}" placeholder="inserer ton prenom" required autocomplete="prenom" autofocus>
+     
+                                             @error('prenom')
+                                                 <span class="invalid-feedback" role="alert">
+                                                     <strong>{{ $message }}</strong>
+                                                 </span>
+                                             @enderror
+                                        
+                                     </div>
                                 <div class="mb-3">
                                     
                                         <input id="email" type="email"
@@ -117,11 +128,46 @@
                                         @enderror
                                   
                                 </div>
-
+                                <div class="mb-3">
+                                    <input id="dateNaissance" type="date"
+                                                 class="form-control @error('dateNaissance') is-invalid @enderror" name="dateNaissance"
+                                                 value="{{ old('dateNaissance') }}" placeholder="date de naissance" required autocomplete="dateNaissance" autofocus>
+     
+                                             @error('dateNaissance')
+                                                 <span class="invalid-feedback" role="alert">
+                                                     <strong>{{ $message }}</strong>
+                                                 </span>
+                                             @enderror
+                                        
+                                     </div>
+                                     <div class="mb-3">
+                                        <select name="sexe" class="form-select @error('sexe') is-invalid @enderror"  id="sexe">
+                                            <option value="femme">Femme</option>
+                                            <option value="homme">Homme</option>
+                                        </select> 
+                                                 @error('sexe')
+                                                     <span class="invalid-feedback" role="alert">
+                                                         <strong>{{ $message }}</strong>
+                                                     </span>
+                                                 @enderror
+                                            
+                                         </div>
+                                         <div class="mb-3">
+                                            <input id="adresse" type="text"
+                                                         class="form-control @error('adresse') is-invalid @enderror" name="adresse"
+                                                         value="{{ old('adresse') }}" placeholder="inserer ton adresse" required autocomplete="adresse" autofocus>
+             
+                                                     @error('adresse')
+                                                         <span class="invalid-feedback" role="alert">
+                                                             <strong>{{ $message }}</strong>
+                                                         </span>
+                                                     @enderror
+                                                
+                                             </div>
                                 <div class="mb-3">
                                 
                                         <input id="password" type="password"
-                                            class="form-control @error('password') is-invalid @enderror" placeholder="inserer ton pass" name="password"
+                                            class="form-control @error('password') is-invalid @enderror" placeholder="***********" name="password"
                                             required autocomplete="new-password">
 
                                         @error('password')
@@ -134,7 +180,7 @@
 
                                 <div class="mb-3">
                                     <input id="password-confirm" type="password" class="form-control"
-                                            name="password_confirmation" placeholder="confirmer pass" required autocomplete="new-password"> 
+                                            name="password_confirmation" placeholder="***********" required autocomplete="new-password"> 
                                 </div>
 
                                 <div class="row mb-0">

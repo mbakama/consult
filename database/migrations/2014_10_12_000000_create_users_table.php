@@ -14,13 +14,24 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('prenom');
+            $table->string('postnom')->nullable(); 
             $table->string('email')->unique();
             $table->integer('status')->default('1');
+            $table->mediumText('Occupation')->nullable(); 
+            $table->mediumText('noconsult')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('userType')->default('patient.e'); 
             $table->timestamp('lastLogin')->nullable();
             $table->text('photo')->nullable();
+            $table->mediumText('phone')->nullable();
+            $table->date('dateNaissance');
+            $table->char('sexe',6);
+            $table->mediumText('adresse');
+            $table->mediumText('bio')->nullable();
+            $table->timestamp('debut_consultation')->nullable();
+            $table->timestamp('fin_consultation')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
