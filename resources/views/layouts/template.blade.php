@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,35 +16,37 @@
 
     <!-- Scripts -->
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
- 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-   <!-- App favicon -->
-   <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
 
-   <!-- Plugin css -->
-   <link href="{{ url('assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
+
+    <!-- Plugin css -->
+    <link href="{{ url('assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet"
+        type="text/css" />
     {{-- <link rel="stylesheet" href="assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css"> --}}
-   <!-- Theme Config Js -->
-   <script src="{{ url("assets/js/hyper-config.js") }}"></script>
+    <!-- Theme Config Js -->
+    <script src="{{ url('assets/js/hyper-config.js') }}"></script>
 
-   <!-- App css -->
-   <link href="{{ url("assets/css/app-saas.min.css") }}" rel="stylesheet" type="text/css" id="app-style" />
-   
-   
-   <!-- Icons css -->
-   {{-- <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" /> --}}
-   {{-- <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet"> 
+    <!-- App css -->
+    <link href="{{ url('assets/css/app-saas.min.css') }}" rel="stylesheet" type="text/css" id="app-style" />
+
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
+
+    <!-- Icons css -->
+    {{-- <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" /> --}}
+    {{-- <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet"> 
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/solid.css">
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"> --}}
-     <!-- App css -->
-     {{-- <link href="assets/css/app-saas.min.css" rel="stylesheet" type="text/css" id="app-style" /> --}}
-     <link href="{{ url('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" /> 
-     <link  href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet" />
-     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
-     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-     
+    <!-- App css -->
+    {{-- <link href="assets/css/app-saas.min.css" rel="stylesheet" type="text/css" id="app-style" /> --}}
+    <link href="{{ url('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
 </head>
+
 <body>
     <div class="wrapper">
         @include('partials.nav')
@@ -66,33 +69,54 @@
     <script src="{{ url('assets/js/pages/demo.dashboard-projects.js') }}"></script>
 
     <!-- App js -->
-    <script src="{{ url('assets/js/app.min.js') }}"></script> 
-   
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script> 
-         function getUserDetail(userId) {
+    <script src="{{ url('assets/js/app.min.js') }}"></script>
+
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"
+        integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    {{-- @if (Session::has('success'))
+    // Override global options
+        <script>
             
-            axios.get('/chat/'+userId).then(function(response){
-                    document.getElementById('discusion').innerHTML = response.data; 
+             toastr.success("{{ session::get('success') }}");
+        </script>
+    @endif --}}
+    <script>
+        function getUserDetail(userId) {
+
+            axios.get('/chat/' + userId).then(function(response) {
+                    document.getElementById('discusion').innerHTML = response.data;
                     // document.getElementById('')
                 })
-                .catch(function(error){
+                .catch(function(error) {
                     console.log(error);
-                }); 
-            }; 
+                });
+        };
 
-  
-    // Display a warning toast, with no title
-    
+        $(document).ready(function() {
+            var readURL = function(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
 
+                    reader.onload = function(e) {
+                        $(".img-thumbnail").attr("src", e.target.result);
+                    };
 
+                    reader.readAsDataURL(input.files[0]);
+                }
+            };
 
-</script> 
-@if (Session::has('message'))
-// Override global options
-<script>toastr.success({{ Session::get('message') }}, {timeOut: 5000})</script>
-@endif
+            $(".file-upload").on("change", function() {
+                readURL(this);
+            });
 
+            $(".upload-button").on("click", function() {
+                $(".file-upload").click();
+            });
+        });
+    </script>
 </body>
+
 </html>

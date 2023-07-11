@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ImageUser;
+
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -57,6 +57,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $update = User::find($id);
         $data =Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:20'],
             'prenom'=>['required','string','max:10'],
@@ -70,17 +71,24 @@ class UserController extends Controller
             'photo'=>['required','image','mimes:jpg,png,jpeg','max:2048']
         ]);
        
-        if (empty($request->file('photo'))) {
-            return back();
-        } else{
-        $name = $request->file('photo')->getClientOriginalName(); 
-        $path = $request->file('photo')->storeAs('images',$name,'public');
-        // $path = $request->file('photo')->store('')
+        if ($request->hasFile('photo')) {
+            $imagePath = $request->file('photo');
+            $image = Image::make($imagePath);
+           
+            $imageName = $imagePath->getClientOriginalName();
+            $image->save(storage_path('images'.$imageName));
+
+            if($update->photo){
+                Storage::delete('public/'.$update->photo);
+            }
+            $update->photo = 'profiles/'.$imageName;
+        }
+
+        // $name = $request->file('photo')->getClientOriginalName(); 
+        // $path = $request->file('photo')->storeAs('images',$name,'public');
        
-        // $image = new ImageUser();
-        // $image->path = $path;
         
-        $update = User::find($id);
+        
         $update->update(
             [
             'name' => $request->name,
@@ -91,15 +99,15 @@ class UserController extends Controller
             'dateNaissance'=>$request->dateNaissance,
             'sexe'=>$request->sexe, 
             'adresse'=>$request->adresse, 
-            'bio'=>$request->bio,
-            'photo'=>$path
+            'bio'=>$request->bio, 
         ]
     );
         //  $update->ImageUser()->save($image);
-        
-        return back()->with('message','information updated');
+        toastr()->success('Les informations ont été mise a jour','',['timeOut'=> 5000]);
+        // return redirect()->back()->with('success','information updated');
+        return back();
     }
-}
+
 
     /**
      * Remove the specified resource from storage.

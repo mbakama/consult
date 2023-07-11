@@ -23,14 +23,48 @@
                 </div>
             </div>
             <!-- end page title -->
+<style> 
 
+
+.file-upload {
+    display: none;
+} 
+
+.p-image {
+    position: absolute;
+    top: 167px;
+    left: 90px;
+    color: #666666;
+    transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+}
+
+.p-image:hover {
+    transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+  
+}
+
+.upload-button {
+    font-size: 1.2em;
+  cursor:pointer
+}
+
+.upload-button:hover {
+    transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+    color: #999;
+}</style>
             <div class="row">
                 <div class="col-xl-4 col-lg-5">
                     <div class="card text-center">
                         <div class="card-body">
                             <img src="{{ asset('storage/'.$profile->photo)}}" class="rounded-circle avatar-lg img-thumbnail"
-                                alt="profile-image">
-
+                                alt="profile-image">  
+                                <div style="margin-top:-10px; margin-left:20px">
+                                    </div><i class="fa fa-camera upload-button"></i>
+                                        <div class="p-image">
+                                           
+                                            <input class="file-upload" type="file" accept="image/*" />
+                                        </div>
+                                   
                             <h4 class="mb-0 mt-2">{{ $profile->name }} {{ $profile->prenom }}</h4>
                             <p class="text-muted font-14">{{ $profile->Occupation }}</p>
 
@@ -598,4 +632,5 @@
         <!-- container -->
 
     </div> 
+    
 @endsection

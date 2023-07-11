@@ -88,9 +88,8 @@
                                 @if (Route::has('login'))
                                 
                                     @auth
-                                    <li class="nav-link"><a href="{{ url('/home') }}"
-                                        class="">Home</a></li>
-                                        
+                                    <li class="nav-item">
+                                        <a href="{{ url('/home') }}" class="nav-link">Connecté</a></li> 
                                     @else
                                     <li class="nav-item">
                                         <a href="{{ route('login') }}"
@@ -99,8 +98,7 @@
                     
                                         @if (Route::has('register'))
                                         <li class="nav-item">
-                                            <a href="{{ route('register') }}"
-                                                class="nav-link">Register</a></li>
+                                            <a href="{{ route('register') }}" class="nav-link">Register</a></li>
                                         @endif
                                     @endauth 
                             @endif
