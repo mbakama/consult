@@ -39,3 +39,4 @@ Route::get('/users/profile/{id}', [UserController::class,'show'])->name('users.p
 Route::post('/users', [UserController::class,'store']);
 Route::put('/users/profile/{id}',[UserController::class,'update'])->name('users.update')->middleware('verified');
 Route::delete('/users/{id}', [UserController::class,'destroy']);
+Route::post('users/update',[UserController::class,'updateProfile'])->name('update');

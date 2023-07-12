@@ -61,12 +61,10 @@ class User extends Authenticatable
     {
         return Cache::has('user-is-online' . $this->id);
     }
-    // create a public function PhoneNumber to formatted a phone number on view? 
-    // generate a view code to display the PhoneNumber function?
-    // generate a public function PhoneNumber on User Model to  formatted a phone number on view?
+   
     // generate a code to display the formatted phone mumber on view with this PhoneNumber Function?
 
-    public function PhoneNumber()
+    public function formatPhoneNumber()
     {
         // Remove all non-numeric characters from the phone number.
         $phone = preg_replace('/[^0-9]/', '', $this->phone);

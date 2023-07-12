@@ -364,7 +364,7 @@
             <li class="dropdown">
                 <a class="nav-link dropdown-toggle arrow-none nav-user px-2" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                     <span class="account-user-avatar">
-                        <img src="{{ asset('storage/'.Auth::user()->photo)}}" alt="user-image" width="40" height="40" class="rounded-circle"> 
+                        <img src="@if (Auth::user()->photo==null) {{ asset("storage/images/6596121.png")}} @else {{ asset('storage/'.Auth::user()->photo)}} @endif" alt="user-image" width="40" height="40" class="rounded-circle"> 
                         
                             @if (Auth::check())
                             <iconify-icon icon="mdi:circle" style="color: rgb(17, 255, 17);background:white; font-size:10px; border:2px solid white; padding:0;  border-radius:50%;margin-left:-13px; margin-bottom:-15px"></iconify-icon></i>

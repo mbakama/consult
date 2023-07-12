@@ -56,15 +56,36 @@
                 <div class="col-xl-4 col-lg-5">
                     <div class="card text-center">
                         <div class="card-body">
-                            <img src="{{ asset('storage/'.$profile->photo)}}" class="rounded-circle avatar-lg img-thumbnail"
-                                alt="profile-image">  
-                                <div style="margin-top:-10px; margin-left:20px">
-                                    </div><i class="fa fa-camera upload-button"></i>
-                                        <div class="p-image">
-                                           
-                                            <input class="file-upload" type="file" accept="image/*" />
+                            <form method="POST" id="profil-form"  action="{{ route('update') }}" enctype="multipart/form-data">
+                                @csrf
+                                <img src="@if ($profile->photo==null) {{ asset("storage/images/6596121.png")}} @else {{ asset("storage/$profile->photo")}} @endif" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image"> 
+                                <div style="margin-top:-10px; margin-left:10px">
+                                    <i class="fa fa-camera upload-button"></i>
+                                    </div> 
+                                <div class="p-image">          
+                                            {{-- <input class="file-upload" type="file" id="file-upload" name="photo" accept="image/*" />  --}}
+                                            <input type="file" class="file-upload" name="photo" accept="image/*">
+                                            <input type="hidden" name="name" id="" value="{{ $profile->name }}">
+                                            <input type="hidden" name="prenom" id="" value="{{ $profile->prenom }}">
+                                            <input type="hidden" name="postnom" id="" value="{{ $profile->postnom }}">
+                                            <input type="hidden" name="Occupation" id="" value="{{ $profile->Occupation }}">
+                                            <input type="hidden" name="phone" id="" value="{{ $profile->phone }}">
+                                            <input type="hidden" name="dateNaissance" id="" value="{{ $profile->dateNaissance }}">
+                                            <input type="hidden" name="sexe" id="" value="{{ $profile->sexe }}">
+                                            <input type="hidden" name="adresse" id="" value="{{ $profile->adresse }}">
+                                            <input type="hidden" name="bio" value="{{ $profile->bio }}"> 
                                         </div>
-                                   
+                                        <button style="border: none" id="btn1" type="submit"><i class="fa fa-camera"></i></button>
+                                       
+                                            <button style="border:none" id="btn2"><span class="st-icon-pandora">Loading...</span></button>
+                                            <div id="res"></div>
+                                            
+                                          
+                            </form>
+                            
+                                
+                               
+                                    
                             <h4 class="mb-0 mt-2">{{ $profile->name }} {{ $profile->prenom }}</h4>
                             <p class="text-muted font-14">{{ $profile->Occupation }}</p>
 
@@ -82,7 +103,7 @@
                                     </span>
                                 </p>
 
-                                <p class="text-muted mb-2 font-13"><strong>Mobile : {{ $profile->PhoneNumber() }}</strong><span class="ms-2"></span></p>
+                                <p class="text-muted mb-2 font-13"><strong>Mobile : {{ $profile->formatPhoneNumber() }}</strong><span class="ms-2"></span></p>
 
                                 <p class="text-muted mb-2 font-13"><strong>Email :</strong> <span
                                         class="ms-2 ">{{ $profile->email }}</span></p>
@@ -545,11 +566,10 @@
                                             <div class="col-md-4">
                                                 <div class="mb-3">
                                                     <label for="Occupation" class="form-label">Sexe</label>
-                                                  
-                                                        <select name="sexe" class="form-select @error('sexe') is-invalid @enderror"  id="sexe">
-                                                            <option value="femme">Femme</option>
-                                                            <option value="homme">Homme</option>
-                                                        </select> 
+                                                        <input type="text" name="sexe" class="form-control @error('sexe')
+                                                            
+                                                        @enderror" id="sexe" value="{{ $profile->sexe }}">
+                                                        
                                                                  @error('sexe')
                                                                      <span class="invalid-feedback" role="alert">
                                                                          <strong>{{ $message }}</strong>
