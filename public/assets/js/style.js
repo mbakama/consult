@@ -48,7 +48,7 @@ $(document).ready(function() {
                     $("res").html(error);
                     
                     $('#btn1').attr("disabled",false); 
-                    $('#btn1').html('"save');
+                    $('#btn1').html('save')
                 
                 
             }else if(response.status ==200){
@@ -56,7 +56,7 @@ $(document).ready(function() {
                 $("res").html(success);
                 
                 $('#btn1').attr("disabled",false); 
-                $('#btn1').html('"save');
+                $('#btn1').html('save');
             
             }
         }});

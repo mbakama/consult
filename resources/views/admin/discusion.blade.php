@@ -26,64 +26,67 @@
          @endif
             </li>
             <hr>
-               @foreach ($cons as $message)
-               @if ($message->user_received == Auth::user()->id)
-                   <li class="clearfix">
-                       
-                       <div class="conversation-text">
-                           <div class="ctext-wrap">
-                              {{-- {{ $user = User::find($message->user_sent) }} --}}
+            <div id="body-chat">
+                @foreach ($cons as $message)
+                {{-- @if ($message->user_received == Auth::user()->id)
+                    <li class="clearfix">
+                        
+                        <div class="conversation-text">
+                            <div class="ctext-wrap">
                               
-                               <p>{{ $message->contenu }}</p>
-                               <span class="mb-0 pt-2" style="font-size: 8px; float:right;">{{ $message->created_at->diffForHumans() }}</span>
-                           </div>
-                       </div>
-                       <div class="conversation-actions dropdown">
-                           <button class="btn btn-sm btn-link" data-bs-toggle="dropdown"
-                               aria-expanded="false">
-                               <i>
-                                   <iconify-icon icon="uil:ellipsis-v"></iconify-icon>
-                               </i>
-                           </button>
-   
-                           <div class="dropdown-menu dropdown-menu-end">
-                               <a class="dropdown-item" href="#">Copy Message</a>
-                               <a class="dropdown-item" href="#">Edit</a>
-                               <a class="dropdown-item" href="#">Delete</a>
-                           </div>
-                       </div>
-                   </li>
-              @endif
-              @if ($message->user_received !== Auth::user()->id) 
-                   <li class="clearfix odd">
-                       <div class="chat-avatar">
-                           <img src="assets/images/users/avatar-1.jpg" class="rounded"
-                               alt="dominic" />
-                           <i>10:01</i>
-                       </div>
-                       <div class="conversation-text">
-                           <div class="ctext-wrap">
-                               <i>{{ Auth::user()->name }}</i>
-                               <p>{{ $message->contenu }}</p>
-                           </div>
-                       </div>
-                       <div class="conversation-actions dropdown">
-                           <button class="btn btn-sm btn-link" data-bs-toggle="dropdown"
-                               aria-expanded="false">
-                               <i>
-                                   <iconify-icon icon="uil:ellipsis-v"></iconify-icon>
-                               </i>
-                           </button>
-   
-                           <div class="dropdown-menu">
-                               <a class="dropdown-item" href="#">Copy Message</a>
-                               <a class="dropdown-item" href="#">Edit</a>
-                               <a class="dropdown-item" href="#">Delete</a>
-                           </div>
-                       </div>
-                   </li>
-               @endif
-           @endforeach
+                               
+                                <p>{{ $message->contenu }}</p>
+                                <span class="mb-0 pt-2" style="font-size: 8px; float:right;">{{ $message->created_at->diffForHumans() }}</span>
+                            </div>
+                        </div>
+                        <div class="conversation-actions dropdown">
+                            <button class="btn btn-sm btn-link" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i>
+                                    <iconify-icon icon="uil:ellipsis-v"></iconify-icon>
+                                </i>
+                            </button>
+    
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a class="dropdown-item" href="#">Copy Message</a>
+                                <a class="dropdown-item" href="#">Edit</a>
+                                <a class="dropdown-item" href="#">Delete</a>
+                            </div>
+                        </div>
+                    </li>
+               @endif --}}
+               
+                    <li class="clearfix  @if ($message->user_received !== Auth::user()->id)  odd @endif">
+                        <div class="chat-avatar">
+                            <img src="assets/images/users/avatar-1.jpg" class="rounded"
+                                alt="dominic" />
+                            <i>10:01</i>
+                        </div>
+                        <div class="conversation-text">
+                            <div class="ctext-wrap">
+                                <i>{{ Auth::user()->name }}</i>
+                                <p>{{ $message->contenu }}</p>
+                            </div>
+                        </div>
+                        <div class="conversation-actions dropdown">
+                            <button class="btn btn-sm btn-link" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i>
+                                    <iconify-icon icon="uil:ellipsis-v"></iconify-icon>
+                                </i>
+                            </button>
+    
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Copy Message</a>
+                                <a class="dropdown-item" href="#">Edit</a>
+                                <a class="dropdown-item" href="#">Delete</a>
+                            </div>
+                        </div>
+                    </li>
+               
+            @endforeach
+            </div>
+              
            </ul>
        </div>
        <!-- end card-body -->
@@ -91,12 +94,14 @@
            <div class="row">
                <div class="col">
                    <div class="mt-2 bg-light p-3">
-                       <form class="needs-validation" novalidate="" name="chat-form"
+                       <form class="needs-validation" novalidate="" id="chat-form" action="{{ route('envoi') }}" method="POST" name="chat-form"
                            id="chat-form">
+                           @csrf
+                           @method('POST')
                            <div class="row">
                                <div class="col mb-2 mb-sm-0">
-                                   <input type="text" class="form-control border-0"
-                                       placeholder="Enter your text" required="" />
+                                <textarea name="message" id="" cols="30" class="form-control border-0" rows="3" required=""></textarea>
+                               
                                    <div class="invalid-feedback">
                                        Please enter your messsage
                                    </div>

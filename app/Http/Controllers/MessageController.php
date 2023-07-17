@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Message;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
@@ -16,11 +17,21 @@ class MessageController extends Controller
     public function __construct() {
         $this->middleware('auth');
     }
-    public function index()
+    public function index(Request $request)
     {
         if (Auth::user()->userType==="doctor") {
             $all = User::whereNotIn('id',[Auth::user()->id])->where('userType','patient.e')->orderBy('lastLogin','desc')->get(); 
-           
+            $id = $request->post('user_id');
+            $al = User::find($id); 
+            // $id = $al->id;
+            // if (is_null( $id = $all->id )) {
+                
+            // }
+            $messages = Message::where(function ($query) use ($id){
+                $query->where('user_sent', Auth::user()->id)->where('user_received', $id);
+            })->orWhere(function ($query) use ($id){
+                $query->where('user_received', auth()->user()->id)->where('user_sent', $id);
+            })->orderBy('created_at')->get(); 
             // $selectID = 1;
 
             // $selectUserId = User::find($selectID);
@@ -34,7 +45,8 @@ class MessageController extends Controller
             //     $query->where('user_received', auth()->user()->id)->where('user_sent', $id);
             // })->orderBy('created_at')->get();
             // $v = strval($cons);
-            return view('admin.chat', compact('all'));
+            return view('admin.chatt', compact('all','messages'));
+            //  return $messages;
         } else {
            
             $all = User::whereNotIn('id',[Auth::user()->id])->where('userType','doctor')->orderBy('lastLogin','desc')->get(); 
@@ -48,7 +60,13 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $current_id = Auth::user()->id;
+        $user_id = $request->post('user_id');
+        $message = $request->post('message');
+
+        DB::insert('insert into messages (user_received,user_sent,contenu) VALUES(?,?,?)', array($user_id, $current_id, $message));
+
+        return back();
     }
 
     /**
@@ -84,49 +102,27 @@ class MessageController extends Controller
     }
 
     public function getMessage($id){ 
-<<<<<<< HEAD
-        // $selectID = User::all();
-
-        // foreach ($selectID as $v){
-        //     $s = $v->id;
-        //    $id = request($s);
-
-        //    echo $id;
-        // }
-
-         $id_user = User::find($id);
-        //  $all = request('id');
-
-        //  $v = User::where('id',$all);
-         
-
-         // $cons = Message::all();
+        
+        $all = User::find($id);
+        if (isset($all->id)) {
+            # code...
+        }
+        
        
-         $cons = Message::where(function ($query) use ($id_user){
-             $query->where('user_sent', Auth::user()->id)->where('user_received', $id_user);
-         })->orWhere(function ($query) use ($id_user){
-             $query->where('user_received', auth()->user()->id)->where('user_sent', $id_user);
-         })->orderBy('created_at')->get();
+        // $idd = $all->id; 
 
-        //  return view('admin.chat', compact('cons'));
         
-       return response()->json(view('admin.discusion',compact('cons'))->render());
-=======
->>>>>>> 3961e63d9666be3e56ae9f35d183e1456971981c
-        
-        $all = User::find($id); 
-        $id = $all->id;
-
-
-        $cons = Message::where(function ($query) use ($id){
-            $query->where('user_sent', Auth::user()->id)->where('user_received', $id);
-        })->orWhere(function ($query) use ($id){
-            $query->where('user_received', auth()->user()->id)->where('user_sent', $id);
-        })->orderBy('created_at')->get(); 
+       
+        // $cons = Message::where(function ($query) use ($id){
+        //     $query->where('user_sent', Auth::user()->id)->where('user_received', $id);
+        // })->orWhere(function ($query) use ($id){
+        //     $query->where('user_received', auth()->user()->id)->where('user_sent', $id);
+        // })->orderBy('created_at')->get(); 
 
     //    return response()->json(view('admin.discusion',compact('cons','all'))->render());
-        return response()->json(view('admin.discusion')->with('cons',$cons)->with('all',$all)
-        ->render());
+        // return response()->json(view('admin.chatt')->with('cons',$cons)->with('all',$all)
+        // ->render());
+        // return view('admin.chatt', compact('cons','all'));
     }
 
     /**

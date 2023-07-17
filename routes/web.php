@@ -24,9 +24,9 @@ Auth::routes(['verify'=>true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard')->middleware('verified');
 Route::get('/files', [App\Http\Controllers\FileController::class, 'index'])->name('admin.files')->middleware('verified');
-Route::get('messages', [App\Http\Controllers\MessageController::class,'index'])->name('admin.messages')->middleware('verified');
+Route::get('messages/{id?}', [App\Http\Controllers\MessageController::class,'index'])->name('admin.messages')->middleware('verified');
 Route::get('message/{id}', [App\Http\Controllers\MessageController::class,'show'])->name('admin.message')->middleware('verified');
-Route::get('chat/{id}',[MessageController::class,'getMessage'])->name('admin.message')->middleware('verified');
+Route::get('chat/{id?}',[MessageController::class,'getMessage'])->middleware('verified')->name('admin.message');
 
 Route::get('list-patients',[HomeController::class,'listPatients'])->name('admin.list-patients');
 Route::get('list-patient/{id}',[HomeController::class,'getByIdPatient'])->name('admin.list-patient');
@@ -40,3 +40,4 @@ Route::post('/users', [UserController::class,'store']);
 Route::put('/users/profile/{id}',[UserController::class,'update'])->name('users.update')->middleware('verified');
 Route::delete('/users/{id}', [UserController::class,'destroy']);
 Route::post('users/update',[UserController::class,'updateProfile'])->name('update');
+Route::post('envoi',[MessageController::class,'store'])->name('envoi');
