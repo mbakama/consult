@@ -22,7 +22,7 @@ return new class extends Migration
             $table->mediumText('noconsult')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('userType')->default('patient.e'); 
+            $table->string('userType'); 
             $table->timestamp('lastLogin')->nullable();
             $table->text('photo')->nullable();
             $table->mediumText('phone')->nullable();

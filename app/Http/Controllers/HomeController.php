@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Message;
 use App\Models\User;
+use App\Models\Message;
 use Illuminate\Http\Request;
+use App\Repo\ConversationRespo;
+use Illuminate\Auth\AuthManager;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -14,41 +16,54 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    private $respo;
+    private $auth;
+    public function __construct(ConversationRespo $respo, AuthManager $auth) {
+        $this->middleware('auth');
+        $this->auth = $auth;
+        $this->respo = $respo;
+    }
     public function index()
     {
         if (Auth::user()->userType=== "doctor") {
-            $all = Message::all();
-            $all = User::where('userType','doctor')->get(); 
-            $totalH = User::where('sexe','homme')->get();
-            $totalF = User::where('sexe','femme')->whereNot('userType','doctor')->get();
-            return view('admin/dashboard', compact(['all','all','totalH','totalF']));
+            $all_users_consult = $this->respo->countConsultingUsers();
+            $all_users_homme = $this->respo->countUserBySexe();
+            $all_users_femme = $this->respo->countUsersBySexe();
+            $all_messages = $this->respo->countMessages();
+            return view('admin/dashboard', 
+            compact(['all_messages','all_users_femme','all_users_homme','all_users_consult']));
         } else{
             return view('user.dashboard'); 
-        }
-     
+        } 
     } 
     public function listPatients(){
         $all = User::where('userType','!=','doctor')->get(); 
         return view('admin.pages-patients', compact('all'));
     }
-    public function getByIdPatient($id)
+    public function getByIdPatient(User $all)
     {
-        $all = User::find($id);
+        // $all = User::find($id);
 
-        return view('admin.pages-view-profile', compact('all'));
+        return view('pages.pages-view-patient-profile', compact('all'));
     }
     public function show($id){
         // $profile = User::find($id);
         // return view('pages.page-profile', compact('profile'));
+    }
+    public function destroy(User $user)
+    {
+        $user->delete();
+
+        return back();
     }
 }

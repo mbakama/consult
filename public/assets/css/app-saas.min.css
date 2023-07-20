@@ -20230,6 +20230,10 @@ input[data-switch=dark]:checked+label {
     font-weight: 700;
     position: relative
 }
+.conversation-list .ctext-wrap .time
+{
+    float: right;
+}
 
 .conversation-list .ctext-wrap p {
     margin: 0;
@@ -20281,7 +20285,11 @@ input[data-switch=dark]:checked+label {
     right: -10px;
     left: auto
 }
-
+.conversation-list .odd .ctext-wrap .time
+{
+    float: left;
+    bottom: 0px;
+}
 .conversation-list .odd .conversation-actions {
     float: left
 }

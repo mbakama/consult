@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
+use App\Repo\ConversationRespo;
 class RegisterController extends Controller
 {
     /*
@@ -30,15 +30,16 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
-
+    private $respo;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(ConversationRespo $respo)
     {
         $this->middleware('guest');
+        $this->respo = $respo;
     }
 
     /**
@@ -70,15 +71,34 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $defautImage = 'images/6596121.png';
-        return User::create([
-            'name' => $data['name'],
-            'prenom'=> $data['prenom'],
-            'dateNaissance'=>$data['dateNaissance'],
-            'sexe'=>$data['sexe'],
-            'adresse'=>$data['adresse'],
-            'email' => $data['email'], 
-            'password' => Hash::make($data['password']),
-            'photo'=>$defautImage
-        ]);
+        $useType = 'doctor';
+        $useType1 = 'patient.e'; 
+         if ($this->respo->verification()->count()<1) { 
+            return User::create([
+                'name' => $data['name'],
+                'prenom'=> $data['prenom'],
+                'userType'=>$useType,
+                'dateNaissance'=>$data['dateNaissance'],
+                'sexe'=>$data['sexe'],
+                'adresse'=>$data['adresse'],
+                'email' => $data['email'], 
+                'password' => Hash::make($data['password']),
+                'photo'=>$defautImage
+            ]);   
+        
+        } else{
+            return User::create([
+                'name' => $data['name'],
+                'prenom'=> $data['prenom'],
+                'userType'=>$useType1,
+                'dateNaissance'=>$data['dateNaissance'],
+                'sexe'=>$data['sexe'],
+                'adresse'=>$data['adresse'],
+                'email' => $data['email'], 
+                'password' => Hash::make($data['password']),
+                'photo'=>$defautImage
+            ]);  
+        }
+        
     }
 }

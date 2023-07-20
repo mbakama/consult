@@ -15,9 +15,8 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Hyper</a></li>
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li>
-                            <li class="breadcrumb-item active">Data Tables</li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Accueil</a></li> 
+                            <li class="breadcrumb-item active">Tableau de bord</li>
                         </ol>
                     </div>
                     <h4 class="page-title">Tableau de bord</h4>
@@ -34,13 +33,13 @@
                                 <div class="col-sm-6 col-lg-3">
                                     <div class="card rounded-0 shadow-none m-0">
                                         <div class="card-body text-center"> 
-                                           @if ($all->count() > 0) 
+                                           @if ($all_users_consult->count() > 0)  
                                             <i class="ri-user-heart-line text-danger font-24"></i>
-                                            <h3><span>{{ $all->count() }}</span></h3>
+                                            <h3><span>{{ $all_users_consult->count() }}</span></h3>
                                             <p class="text-muted font-15 mb-0">Total des patiens consultés</p>
                                             @else
                                             <i class="ri-user-heart-line text-danger font-24"></i>
-                                            <h3><span>{{ $all->count() }}</span></h3>
+                                            <h3><span>{{ $all_users_consult->count() }}</span></h3>
                                             <p class="text-muted font-15 mb-0">Total des patiens consultés</p>
                                             @endif
                                         </div>
@@ -50,15 +49,13 @@
                                 <div class="col-sm-6 col-lg-3">
                                     <div class="card rounded-0 shadow-none m-0 border-start border-light">
                                         <div class="card-body text-center">
-                                            @if ($all->count() > 0)
-                                                
-                                          
-                                            <i class="ri-list-check-2 text-muted font-24"></i>
-                                            <h3><span>715</span></h3>
+                                            @if ($all_messages->count() > 0) 
+                                            <i class="ri-discuss-line  text-warning font-24"></i>
+                                            <h3><span>{{ $all_messages->count() }}</span></h3>
                                             <p class="text-muted font-15 mb-0">Total Messages recus</p>
                                             @else
-                                            <i class="ri-list-check-2 text-muted font-24"></i>
-                                            <h3><span> {{ $all->count() }} </span></h3>
+                                            <i class="ri-discuss-line text-warning font-24"></i>
+                                            <h3><span> {{ $all_messages->count() }} </span></h3>
                                             <p class="text-muted font-15 mb-0">Total Messages recus</p>
                                             @endif
                                         </div>
@@ -68,14 +65,16 @@
                                 <div class="col-sm-6 col-lg-3">
                                     <div class="card rounded-0 shadow-none m-0 border-start border-light">
                                         <div class="card-body text-center">
-                                            <i class="ri-group-line text-muted font-24"></i>
-                                            @if ( $totalF->count()>0)
-                                            <h3><span>{{ $totalF->count() }}</span></h3>
+                                            <i class="ri-user-fill text-success font-24"></i> 
+                                             @if ( $all_users_femme->count()>0)
+                                             
+                                                 <h3><span>{{ $all_users_femme->count()  }}
+                                                </span></h3>
+                                            <p class="text-muted font-15 mb-0">Femme(s)</p> 
+                                              @else 
+                                            <h3><span>{{ $all_users_femme->count()  }}</span></h3>
                                             <p class="text-muted font-15 mb-0">Femme(s)</p>
-                                            @else
-                                            <h3><span>{{ $totalF->count() }}</span></h3>
-                                            <p class="text-muted font-15 mb-0">Femme(s)</p>
-                                            @endif
+                                             @endif  
                                             
                                         </div>
                                     </div>
@@ -84,15 +83,16 @@
                                 <div class="col-sm-6 col-lg-3">
                                     <div class="card rounded-0 shadow-none m-0 border-start border-light">
                                         <div class="card-body text-center">
-                                            <i class="ri-group-line text-muted font-24"></i>
-                                            @if ($totalH->count()>0)
-                                            <h3><span>{{ $totalH->count() }}</span></h3>
+                                            <i class="ri-user-line text-primary font-24"></i> 
+                                             @if ( $all_users_homme->count()>0)
+                                             
+                                                 <h3><span>{{ $all_users_homme->count()  }}
+                                                </span></h3>
+                                            <p class="text-muted font-15 mb-0">Homme(s)</p> 
+                                              @else 
+                                            <h3><span>{{ $all_users_homme->count()  }}</span></h3>
                                             <p class="text-muted font-15 mb-0">Homme(s)</p>
-                                            @else
-                                            <h3><span>{{ $totalH->count() }}</span></h3>
-                                            <p class="text-muted font-15 mb-0">Homme(s)</p>
-                                            @endif
-                                            
+                                             @endif  
                                         </div>
                                     </div>
                                 </div>

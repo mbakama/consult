@@ -24,6 +24,7 @@ class User extends Authenticatable
     protected $fillable = [
         "name",
         "prenom",
+        "userType",
         "postnom",
         "dateNaissance",
         "sexe",
@@ -75,7 +76,7 @@ class User extends Authenticatable
         }
 
         // Return the phone number with dashes between the three groups of digits.
-        return substr($phone, 0, 3) . '-' . substr($phone, 3, 3) . '-' . substr($phone, 6);
+        return substr($phone, 0, 3) . ' ' . substr($phone, 3, 3) . ' ' . substr($phone, 6);
     }
     /**
      * Summary of UpperCase
@@ -91,4 +92,5 @@ class User extends Authenticatable
    {
        return $this->hasOne(ImageUser::class);
    }
+   
 }

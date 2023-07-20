@@ -100,20 +100,20 @@
                                                 @php
                                                     $i = 1;
                                                 @endphp
-                                                @foreach ($all as $item) 
+                                                @forelse ($all as $item) 
                                                 <tr>
                                                     <th scope="row">{{ $i++ }}</th>
-                                                    <td>{{ $item->name }}</td>
+                                                    <td>{{ $item->prenom }} {{ $item->name }}</td>
                                                     <td></td>
                                                     <td></td>
                                                     <td></td>
-                                                    <td></td>
+                                                    <td>{{$item->dateNaissance}}</td>
                                                     <td>{{ $item->created_at }}</td>
                                                     <td></td>
                                                     <td></td>
                                                     <td><div>
                                                         <input type="checkbox" id="switch01" checked data-switch="success"/>
-                                                        <label for="switch01" data-on-label="Yes" data-off-label="No" class="mb-0 d-block"></label>
+                                                        <label for="switch01" data-on-label="No" data-off-label="Yes" class="mb-0 d-block"></label>
                                                     </div>
 
                                                 </td>
@@ -125,12 +125,21 @@
                                                             <!-- <a class="dropdown-item" href="#"><i class="me-2 text-muted vertical-middle"><iconify-icon icon="mdi:link"></iconify-icon></i>Get Sharable Link</a> -->
                                                             <a class="dropdown-item" href="#"><i class="me-2 text-success vertical-middle"><iconify-icon icon="mdi:pencil"></iconify-icon></i>Rename</a>
                                                             <a class="dropdown-item" href="{{ route('admin.list-patient',$item->id) }}"><i class="me-2 text-muted vertical-middle"><iconify-icon icon="mdi:eye"></iconify-icon></i>View</a>
-                                                            <a class="dropdown-item" href="#"><i class="me-2 text-danger vertical-middle"><iconify-icon icon="mdi:delete"></iconify-icon></i>Remove</a>
+                                                            <form action="{{ route('deleted',$item->id) }}" method="post">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button class="dropdown-item" type="submit"><i class="me-2 text-danger vertical-middle"><iconify-icon icon="mdi:delete"></iconify-icon></i>Remove</a>
+                                                                </button>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 </tr>
-                                                @endforeach
+                                                @empty
+                                                    <tr>
+                                                        <td colspan="11" class="text-danger text-center">Pas de patients </td>
+                                                    </tr>
+                                                @endforelse
                                             </tbody>
                                         
                                     </table>

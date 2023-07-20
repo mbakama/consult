@@ -37,18 +37,18 @@
                                             <div class="row align-items-center">
                                                 <div class="col-auto">
                                                     <div class="avatar-lg">
-                                                        <img src="assets/images/users/avatar-2.jpg" alt="" class="rounded-circle img-thumbnail">
+                                                        <img src="@if ($all->photo==null) {{ asset("storage/images/6596121.png")}} @else {{ asset("storage/$all->photo")}} @endif" alt="" class="rounded-circle img-thumbnail">
                                                     </div>
                                                 </div>
                                                 <div class="col">
                                                     <div>
-                                                        <h4 class="mt-1 mb-1 text-white">Michael Franklin</h4>
-                                                        <p class="font-13 text-white-50"> Authorised Brand Seller</p>
+                                                        <h4 class="mt-1 mb-1 text-white">{{ $all->name }} {{ $all->prenom }} {{ $all->postnom }}</h4>
+                                                        <p class="font-13 text-white-50"> {{ $all->Occupation }}</p>
 
                                                         <ul class="mb-0 list-inline text-light">
                                                             <li class="list-inline-item me-3">
                                                                 <h5 class="mb-1 text-white">$ 25,184</h5>
-                                                                <p class="mb-0 font-13 text-white-50">Total Revenue</p>
+                                                                <p class="mb-0 font-13 text-white-50">Total de fois</p>
                                                             </li>
                                                             <li class="list-inline-item">
                                                                 <h5 class="mb-1 text-white">5482</h5>
@@ -81,21 +81,21 @@
                             <!-- Personal-Information -->
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="header-title mt-0 mb-3">Seller Information</h4>
+                                    <h4 class="header-title mt-0 mb-3">Informations</h4>
                                     <p class="text-muted font-13">
-                                        Hye, I’m Michael Franklin residing in this beautiful world. I create websites and mobile apps with great UX and UI design. I have done work with big companies like Nokia, Google and Yahoo. Meet me or Contact me for any queries. One Extra line for filling space. Fill as many you want.
+                                        {{ $all->bio }}
                                     </p>
 
                                     <hr/>
 
                                     <div class="text-start">
-                                        <p class="text-muted"><strong>Full Name :</strong> <span class="ms-2">Michael A. Franklin</span></p>
+                                        <p class="text-muted"><strong>Full Name :</strong> <span class="ms-2">{{ $all->prenom }} {{ $all->name }}</span></p>
 
-                                        <p class="text-muted"><strong>Mobile :</strong><span class="ms-2">(+12) 123 1234 567</span></p>
+                                        <p class="text-muted"><strong>Mobile :</strong><span class="ms-2">{{ $all->formatPhoneNumber() }}</span></p>
 
-                                        <p class="text-muted"><strong>Email :</strong> <span class="ms-2">coderthemes@gmail.com</span></p>
+                                        <p class="text-muted"><strong>Email :</strong> <span class="ms-2">{{ $all->email }}</span></p>
 
-                                        <p class="text-muted"><strong>Location :</strong> <span class="ms-2">USA</span></p>
+                                        <p class="text-muted"><strong>Location :</strong> <span class="ms-2">{{ $all->adresse }}</span></p>
 
                                         <p class="text-muted"><strong>Languages :</strong>
                                             <span class="ms-2"> English, German, Spanish </span>

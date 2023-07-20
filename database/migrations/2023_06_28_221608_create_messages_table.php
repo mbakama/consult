@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_received');
             $table->unsignedBigInteger('user_sent');
-            $table->foreign('user_received')->references('id')->on('users');
-            $table->foreign('user_sent')->references('id')->on('users');
+            $table->foreign('user_received')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_sent')->references('id')->on('users')->onDelete('cascade');
             $table->text('contenu'); 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
