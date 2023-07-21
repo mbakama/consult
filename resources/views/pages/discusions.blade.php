@@ -74,7 +74,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="card-body py-0 mb-3" data-simplebar style="max-height: 546px">
-                                            @include('admin.users',['all',$all])
+                                            @include('admin.users',['all',$all,'unread'=>$unread])
 
                                         </div>
                                         <!-- end slimscroll-->
@@ -105,23 +105,22 @@
                                   
                                  </li>
                                  <hr>
-                                 
+                                 @if ($messages->hasMorePages())
+                                     <div class="text-center">
+                                        <a href="{{ $messages->nextPageUrl() }}" class="btn btn-light">voir anciens messages</a>
+                                     </div>
+                                 @endif
                                 @forelse ($messages as $message) 
                                 
                                 <li class="@if($message->user_received == Auth::id()) clearfix @elseif ($message->user_sent == Auth::id()) clearfix odd @endif">
-                                    <div class="chat-avatar">
-                                        <img src="@if ($message->from->photo==null) {{ asset("storage/images/6596121.png")}} @else {{ asset("storage/$message->from")}} @endif" class="rounded"
-                                            alt="{{ $message->from->prenom }}" />
-                                        
-                                    </div>
+                                   
                                     <div class="conversation-text">
                                         <div class="ctext-wrap">
                                             <i>{{ $message->from->prenom }}</i>
                                             
-                                            <p>
-                                                
-                                                {{ $message->contenu }}</p>
-                                                <i class="time pt-1" style="margin-bottom: -10px;"> {{ $message->created_at->format('h:m:s') }}</i>
+                                            <p> 
+                                                {!! nl2br(e($message->contenu)) !!} </p>
+                                                <i class="time pt-1" style="margin-bottom: -10px; font-size:8px"> {{ $message->created_at->format('h:m:s') }}</i>
                                         </div>
                                     </div>
                                     <div class="conversation-actions dropdown">
@@ -143,7 +142,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                     
+                               
                                 @empty
 
                                 @if (Auth::user()->userType=="doctor")
@@ -157,6 +156,11 @@
                                 @endif
                                 
                                 @endforelse 
+                                @if ($messages->previousPageUrl())
+                                <div class="text-center">
+                                   <a href="{{ $messages->previousPageUrl() }}" class="btn btn-light"><i class="fa-solid fa-chevron-down"></i></a>
+                                </div>
+                            @endif
                             </ul>
                         </div>
                         <!-- end card-body -->
@@ -211,30 +215,87 @@
                     <div class="card" >
 
                         <div class="card-body">
-                            <div class="dropdown float-end">
-                                <a href="#" class="dropdown-toggle arrow-none card-drop"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i><iconify-icon icon="mdi:dots-horizontal"></iconify-icon></i>
+                           @if (Auth::user()->userType=="doctor")
+                           <div class="dropdown float-end">
+                            <a href="#" class="dropdown-toggle arrow-none card-drop"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i><iconify-icon style="cursor: pointer" icon="mdi:dots-horizontal"></iconify-icon></i>
+                                
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <!-- item-->
+                                <a href="{{ route('admin.list-patient',$user->id) }}" class="dropdown-item">View full</a>
+                                <!-- item-->
+                                {{-- <a href="javascript:void(0);" class="dropdown-item">Edit Contact Info</a> --}}
+                                <!-- item-->
+                                {{-- <a href="" class="dropdown-item">Status</a> --}}
+                                <a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalId">
+                                    Status
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">View full</a>
-                                    <!-- item-->
-                                    {{-- <a href="javascript:void(0);" class="dropdown-item">Edit Contact Info</a> --}}
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item">Remove</a>
+                            </div>
+                        </div>
+                           @else
+                            
+                        @endif
+                        <!-- Modal trigger button -->
+                       
+                        
+                        <!-- Modal Body -->
+                        <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                        <div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalTitleId">Modal title</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    @if (!empty($user->consul->id))
+                                    <form action="{{ route('update_status_user',$user->consul->id) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                    <div class="modal-body">
+                                       
+                                        <select name="status" id="" name="status" class="form-control">
+                                            <option value="0">Encours</option>
+                                            <<option value="1">Terminée</option>
+                                        </select>
+                                        
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                    </div>
+                                </form>
+                                 @else
+                                 @endif
+
                                 </div>
                             </div>
+                        </div>
                         
+                        
+                        <!-- Optional: Place to the bottom of scripts -->
+                        <script>
+                            const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
+                        
+                        </script>
                             <div class="mt-3 text-center">
-                                <img src="@if ($user->photo==null) {{ asset("storage/images/6596121.png")}} @else {{ asset("storage/$user->photo")}} @endif" alt="shreyu"
+                                <img src="@if ($user->photo==null) {{ asset("storage/images/6596121.png")}} @else {{ $user->url_image()}} @endif" alt="shreyu"
                                     class="img-thumbnail avatar-lg rounded-circle" />
+
                                 <h4>{{ $user->prenom }} {{ $user->postnom }} {{ $user->name }} </h4>
                                 <button class="btn btn-primary btn-sm mt-1">
                                     <i class="me-1"><iconify-icon icon="uil:envelope-add"></iconify-icon></i>Send Email
                                 </button>
-                                <p class="text-muted mt-2 font-14">
-                                    Last Interacted: <strong>Few hours back</strong>
+                                <p class="text-muted mt-2"> 
+                                    @if (empty($user->consul->debut_consultation) || empty($user->consul->fin_consultation) || empty($user->consul->numero_consultation))
+                                        
+                                    @else
+                                    <span style="font-size: 12px">Début Consulatation: <strong>{{ $user->consul->debut_consultation }}</strong></span> <br>
+                                    <span style="font-size: 12px">Fin Consulatation: <strong>{{ $user->consul->fin_consultation }}</strong></span> <br>
+                                        <span class="pt-2" style="font-size: 12px">Code: <strong>{{ $user->consul->numero_consultation }}</strong></span>
+
+                                    @endif 
                                 </p>
                             </div>
                         
@@ -252,22 +313,17 @@
                                 <p>{{ $user->formatPhoneNumber() }}</p>
                         
                                 <p class="mt-3 mb-1">
-                                    <strong><i><iconify-icon icon="uil:location"></iconify-icon></i> Location:</strong>
+                                    <strong><i><iconify-icon icon="uil:location"></iconify-icon></i> Adresse:</strong>
                                 </p>
-                                <p>California, USA</p>
+                                <p>{{ $user->adresse }}</p>
                         
                                 <p class="mt-3 mb-1">
-                                    <strong><i><iconify-icon icon="uil:globe"></iconify-icon></i> Languages:</strong>
+                                    <strong><i><iconify-icon icon="uil:globe"></iconify-icon></i> Status:</strong>
                                 </p>
-                                <p>English, German, Spanish</p>
+                                <p>{{ $user->userType }}</p>
                         
-                                <p class="mt-3 mb-2">
-                                    <strong><i><iconify-icon icon="uil:users-alt"></iconify-icon></i> Groups:</strong>
-                                </p>
-                                <p class="mb-0">
-                                    <span class="badge badge-success-lighten p-1 font-14">Work</span>
-                                    <span class="badge badge-primary-lighten p-1 font-14">Friends</span>
-                                </p>
+                               
+                               
                             </div>
                         </div>
                     </div>

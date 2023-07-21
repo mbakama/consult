@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Storage;
 use Str;
 
 class User extends Authenticatable
@@ -63,6 +64,10 @@ class User extends Authenticatable
         return Cache::has('user-is-online' . $this->id);
     }
    
+    public function consul()
+    {
+        return $this->hasOne(Consultation::class,'user_id');
+    }
     // generate a code to display the formatted phone mumber on view with this PhoneNumber Function?
 
     public function formatPhoneNumber()
@@ -92,5 +97,8 @@ class User extends Authenticatable
    {
        return $this->hasOne(ImageUser::class);
    }
-   
+   public function url_image():string
+   {
+        return Storage::disk('public')->url($this->photo);
+   }
 }

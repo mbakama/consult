@@ -64,7 +64,12 @@
                     <div class="w-100 overflow-hidden">
                         <h5 class="mt-0 mb-0 font-14">
                             <span
-                                class="float-end text-muted font-12">{{ Carbon\Carbon::parse($item->created_at)->format('h:m') }}</span>
+                                class="float-end text-muted font-12">{{ Carbon\Carbon::parse($item->created_at)->format('h:m') }}  <span class="text-danger">
+                                    @if (isset($unread[$item->id]))
+                                    {{ $unread[$item->id] }}
+                                    @else
+                                    {{ $unread[$item->id] }}
+                                @endif</span>
                             {{ $item->name }}
                         </h5>
                         <p class="mt-1 mb-0 text-muted font-14">
@@ -85,6 +90,8 @@
                                                               '}}                                     
                                                             </span> --}}
                             <span class="w-75">How are you today?</span>
+                           
+                        </span>
                         </p>
                     </div>
                 </div>

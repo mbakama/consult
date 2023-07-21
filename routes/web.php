@@ -44,7 +44,9 @@ Route::get('/files', [App\Http\Controllers\FileController::class, 'index'])->nam
 Route::get('/users/', [UserController::class,'index'])->middleware(['verified','auth']);
 Route::get('/users/profile/{id}', [UserController::class,'show'])->name('users.profile')->middleware(['verified','auth']);
 Route::post('/users', [UserController::class,'store'])->middleware(['verified','auth']);
-Route::put('/users/profile/{id}',[UserController::class,'update'])->name('users.update')->middleware(['verified','auth']);
+Route::put('/users/profile/',[UserController::class,'update'])->name('users.update')->middleware(['verified','auth']);
 Route::delete('/users/{id}', [UserController::class,'destroy'])->middleware(['auth','verified']);
-Route::post('users/update',[UserController::class,'updateProfile'])->name('update')->middleware(['verified','auth']);
+Route::put('users/update',[UserController::class,'update_image'])->name('update')->middleware(['verified','auth']);
 Route::post('envoi',[MessageController::class,'store'])->name('envoi')->middleware(['verified','auth']);
+
+Route::put('consult/{id}',[UserController::class,'update_status'])->name('update_status_user')->middleware(['auth','verified']);

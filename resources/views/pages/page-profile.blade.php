@@ -56,37 +56,77 @@
                 <div class="col-xl-4 col-lg-5">
                     <div class="card text-center">
                         <div class="card-body">
-                            <form method="POST" id="profil-form"  action="{{ route('update') }}" enctype="multipart/form-data">
-                                @csrf
-                                <img src="@if ($profile->photo==null) {{ asset("storage/images/6596121.png")}} @else {{ asset("storage/$profile->photo")}} @endif" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image"> 
+                           
+                                <img src="{{ $profile->url_image()}}" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image"> 
                                 <div style="margin-top:-10px; margin-left:10px">
-                                    <i class="fa fa-camera upload-button"></i>
+                                   
+                                    <span style="border:none"  data-bs-toggle="modal" data-bs-target="#modalId"></button>
+
                                     </div> 
-                                <div class="p-image">          
-                                            {{-- <input class="file-upload" type="file" id="file-upload" name="photo" accept="image/*" />  --}}
-                                            <input type="file" class="file-upload" name="photo" accept="image/*">
-                                            <input type="hidden" name="name" id="" value="{{ $profile->name }}">
-                                            <input type="hidden" name="prenom" id="" value="{{ $profile->prenom }}">
-                                            <input type="hidden" name="postnom" id="" value="{{ $profile->postnom }}">
-                                            <input type="hidden" name="Occupation" id="" value="{{ $profile->Occupation }}">
-                                            <input type="hidden" name="phone" id="" value="{{ $profile->phone }}">
-                                            <input type="hidden" name="dateNaissance" id="" value="{{ $profile->dateNaissance }}">
-                                            <input type="hidden" name="sexe" id="" value="{{ $profile->sexe }}">
-                                            <input type="hidden" name="adresse" id="" value="{{ $profile->adresse }}">
-                                            <input type="hidden" name="bio" value="{{ $profile->bio }}"> 
+                                    
+                                    <!-- Modal trigger button -->
+                                    {{-- <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modalId">
+                                      Launch
+                                    </button> --}}
+                                    
+                                    <!-- Modal Body -->
+                                    <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                                    <div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header"> 
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <form action="{{ route('update') }}" method="POST" enctype="multipart/form-data"> 
+                                                    @csrf
+                                                    @method('PUT')
+                                                <div class="modal-body">
+                                <img src="{{ $profile->url_image() }}" style="width: 100%; height:50%" class="avatar-lg img-thumbnail" alt="profile-image"> 
+                                                <div style="margin-top:-10px; margin-left:10px">
+                                                    <i class="fa fa-camera upload-button"></i>
+                                                    </div>
+
+                                                </div>
+                                                <div class="p-image">          
+                                                    {{-- <input class="file-upload" type="file" id="file-upload" name="photo" accept="image/*" />  --}}
+                                                    
+                                                    <input type="file" class="file-upload" name="photo" accept="image/*">
+                                                    <input type="hidden" name="name" id="" value="{{ $profile->name }}">
+                                                    <input type="hidden" name="prenom" id="" value="{{ $profile->prenom }}">
+                                                    <input type="hidden" name="postnom" id="" value="{{ $profile->postnom }}">
+                                                    <input type="hidden" name="Occupation" id="" value="{{ $profile->Occupation }}">
+                                                    <input type="hidden" name="phone" id="" value="{{ $profile->phone }}">
+                                                    <input type="hidden" name="dateNaissance" id="" value="{{ $profile->dateNaissance }}">
+                                                    <input type="hidden" name="sexe" id="" value="{{ $profile->sexe }}">
+                                                    <input type="hidden" name="adresse" id="" value="{{ $profile->adresse }}">
+                                                    <input type="hidden" name="bio" value="{{ $profile->bio }}"> 
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Save</button>
+                                                </div>
+                                            </form>
+                                            </div>
                                         </div>
-                                        <button style="border: none" id="btn1" type="submit"><i class="fa fa-camera"></i></button>
+                                    </div>
+                                    
+                                    
+                                    <!-- Optional: Place to the bottom of scripts -->
+                                    <script>
+                                        const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
+                                    
+                                    </script>
+                               
+                                        <button style="border: none" type="submit" data-bs-toggle="modal" data-bs-target="#modalId"><i class="fa fa-camera"></i></button>
                                        
-                                            <button style="border:none" id="btn2"><span class="st-icon-pandora">Loading...</span></button>
                                             <div id="res"></div>
-                                            
-                                          
-                            </form>
+
+                                        
                             
                                 
                                
                                     
-                            <h4 class="mb-0 mt-2">{{ $profile->name }} {{ $profile->prenom }}</h4>
+                            <h4 class="mb-0 mt-2">{{ Str::ucfirst($profile->name) }} {{ Str::ucfirst($profile->prenom) }}</h4>
                             <p class="text-muted font-14">{{ $profile->Occupation }}</p>
 
                             <button type="button" class="btn btn-success btn-sm mb-2">Follow</button>
@@ -98,7 +138,7 @@
                                    {{ $profile->bio }}
                                 </p>
                                 <p class="text-muted mb-2 font-13"><strong>Full Name :</strong> <span
-                                        class="ms-2 uppercase">{{ $profile->getNameInUppercase() }} {{ $profile->prenom }}  {{ $profile->postnom }}
+                                        class="ms-2 uppercase">{{ $profile->getNameInUppercase() }} {{ Str::upper($profile->prenom)  }}  {{ Str::upper($profile->postnom )}}
                                     
                                     </span>
                                 </p>
@@ -510,7 +550,7 @@
                                 <!-- end timeline content-->
                                        
                                 <div class="tab-pane" id="settings">
-                                    <form action="{{ route('users.update',$profile->id) }}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('users.update') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         @method('PUT')
                                         <h5 class="mb-4 text-uppercase"><i class="mdi mdi-account-circle me-1"></i>
@@ -520,7 +560,7 @@
                                                 <div class="mb-3">
                                                     <label for="prenom" class="form-label">First Name</label>
                                                     <input type="text" name="prenom" class="form-control" id="prenom"
-                                                        placeholder="Enter first name" value="{{ $profile->prenom }}">
+                                                        placeholder="Enter first name" value="{{ old('prenom', $profile->prenom) }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
@@ -529,7 +569,7 @@
 
                                                     <input id="name" type="text"
                                                                  class="form-control @error('name') is-invalid @enderror" name="name"
-                                                                 value="{{$profile->name}}" placeholder="inserer ton nom" required autocomplete="name" autofocus>
+                                                                 value="{{ old('name',$profile->name)}}" placeholder="inserer ton nom" required autocomplete="name" autofocus>
                      
                                                              @error('name')
                                                                  <span class="invalid-feedback" role="alert">
@@ -543,7 +583,7 @@
                                                 <div class="mb-3">
                                                     <label for="postnom" class="form-label">Post nom</label>
                                                     <input type="text" name="postnom" class="form-control" id="postnom"
-                                                        placeholder="Enter post nom" value="{{ $profile->postnom }}">
+                                                        placeholder="Enter post nom" value="{{ old('postnom',$profile->postnom) }}">
                                                 </div>
                                             </div> <!-- end col -->
                                         </div> <!-- end row -->
@@ -553,14 +593,14 @@
                                                 <div class="mb-3">
                                                     <label for="phone" class="form-label">Tel:</label>
                                                     <input type="number" name="phone" class="form-control" id="phone"
-                                                        placeholder="081453227" value="{{ $profile->phone }}">
+                                                        placeholder="081453227" value="{{ old('phone',$profile->phone) }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-5">
                                                 <div class="mb-3">
                                                     <label for="Occupation" class="form-label">Occupation</label>
                                                     <input type="text" name="Occupation" class="form-control" id="Occupation"
-                                                        placeholder="Avocat" value="{{ $profile->Occupation }}">
+                                                        placeholder="Avocat" value="{{ old('Occupation',$profile->Occupation) }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
@@ -568,7 +608,7 @@
                                                     <label for="Occupation" class="form-label">Sexe</label>
                                                         <input type="text" name="sexe" class="form-control @error('sexe')
                                                             
-                                                        @enderror" id="sexe" value="{{ $profile->sexe }}">
+                                                        @enderror" id="sexe" value="{{ old('sexe', $profile->sexe) }}">
                                                         
                                                                  @error('sexe')
                                                                      <span class="invalid-feedback" role="alert">
@@ -579,25 +619,25 @@
                                             </div>
                                         </div> 
                                       <div class="row">
-                                        <div class="col-md-4">
+                                        {{-- <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="photo" class="form-label">Photo</label>
                                                 <input type="file" name="photo" class="form-control" id="photo"
-                                                 value="{{ $profile->photo }}">
+                                                 value="{{ old('photo',$profile->photo) }}">
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <div class="col-md-3">
                                             <div class="mb-3">
                                                 <label for="dateNaissance" class="form-label">Date de Naissance</label>
                                                 <input type="date" name="dateNaissance" class="form-control" id="dateNaissance"
-                                                 value="{{ $profile->dateNaissance }}">
+                                                 value="{{ old('dateNaissance',$profile->dateNaissance) }}">
                                             </div>
                                         </div>
                                         <div class="col-md-5">
                                             <div class="mb-3">
                                                 <label for="dateNaissance" class="form-label">Adresse</label>
                                                 <input type="adresse" name="adresse" class="form-control" id="adresse"
-                                                 value="{{ $profile->adresse }}">
+                                                 value="{{ old('adresse',$profile->adresse) }}">
                                             </div>
                                         </div>
                                       </div>
@@ -616,7 +656,7 @@
                                                 <div class="mb-3">
                                                     <label for="useremail" class="form-label">Email Address</label>
                                                     <input type="email" class="form-control" id="useremail"
-                                                        placeholder="Enter email" value="{{ $profile->email }}">
+                                                        placeholder="Enter email" value="{{ old('email',$profile->email) }}">
                                                     <span class="form-text text-muted"><small>If you want to change
                                                             email please <a href="javascript: void(0);">click</a>
                                                             here.</small></span>

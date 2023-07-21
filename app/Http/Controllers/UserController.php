@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Requests\UpdateUserRequest;
+use App\Models\Consultation;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
 use Nette\Utils\Image;
 use Illuminate\Http\Request;
@@ -58,95 +61,35 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request)
     {
-        $update = User::find($id);
-        $data =Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:20'],
-            'prenom'=>['required','string','max:10'],
-            'postnom'=>['string','max:10'],
-            'Occupation'=>['string','max:20','required'],
-            'phone'=>['string'],
-            'dateNaissance'=>['required','date'],
-            'sexe'=>['required','string','max:6'], 
-            'adresse'=>['required','string'], 
-            'bio'=>['string'],
-            'photo'=>['required','image','mimes:jpg,png,jpeg','max:2048']
-        ]); 
-        $update->update(
-            [
-            'name' => $request->name,
-            'prenom'=>$request->prenom,
-            'postnom'=>$request->postnom,
-            'Occupation'=>$request->Occupation,
-            'phone'=>$request->phone,
-            'dateNaissance'=>$request->dateNaissance,
-            'sexe'=>$request->sexe, 
-            'adresse'=>$request->adresse, 
-            'bio'=>$request->bio, 
-        ]
-    );
+        $update = Auth::user();
+        $data = $request->validated(); 
+        $update->update($data);
         //  $update->ImageUser()->save($image);
         toastr()->success('Les informations ont été mise a jour','',['timeOut'=> 5000]);
         // return redirect()->back()->with('success','information updated');
         return back();
     }
 
-    public function updateProfile(Request $request){
+    public function update_image(UpdateUserRequest $request)
+    { 
+        $user = Auth::user();
+        $data = $request->validated();
+        if ($file = $request->file('photo') != null && !$file = $request->file('photo')->getError()) {
+            $file = $request->file('photo')->getClientOriginalName();
+            $store = $request->file('photo')->storeAs('images',$file,'public'); 
+        
+        $data['photo'] = $store;
+        
+        $user->update($data);
 
-        $id = Auth::user()->id;
+        toastr()->success('Votre image a été mise a jour avec success','',['timeOut'=> 5000]);
 
-        $data =Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:20'],
-            'prenom'=>['required','string','max:10'],
-            'postnom'=>['string','max:10'],
-            'Occupation'=>['string','max:20','required'],
-            'phone'=>['string'],
-            'dateNaissance'=>['required','date'],
-            'sexe'=>['required','string','max:6'], 
-            'adresse'=>['required','string'], 
-            'bio'=>['string'], 
-        ]);
-
-        if (auth()->user()->photo == null) {
-            $val = Validator::make($request->all(),[
-                'photo'=>['required','image']
-            ]);
-
-            if ($val->fails()) {
-                return response()->json([
-                    'status'=>400,
-                    'msg'=>$data->messages()
-                    ]);
-            }
+        return back(); 
+        } else {
+            return back();
         }
-        if ($data->fails()) {
-            return response()->json([
-            $data->messages()
-            ]);
-        }
-
-        if ($request->hasFile('photo')) {
-            $imagePath = 'public/images';
-
-            if (File::exists($imagePath)) {
-                File::delete($imagePath);
-            }
-            $profile_image = $request->photo->store('images','public');
-        }
-       Auth::user()->update( [
-            'name' => $request->name,
-            'prenom'=>$request->prenom,
-            'postnom'=>$request->postnom,
-            'Occupation'=>$request->Occupation,
-            'phone'=>$request->phone,
-            'dateNaissance'=>$request->dateNaissance,
-            'sexe'=>$request->sexe, 
-            'adresse'=>$request->adresse, 
-            'bio'=>$request->bio, 
-            'photo'=>$profile_image ?? auth()->user()->photo
-        ]);
-        return back();
     }
 
     /**
@@ -158,11 +101,15 @@ class UserController extends Controller
     }
    
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
-     */
+    public function update_status(Request $request,$id)
+    {
+        $up = Consultation::whereRaw("(id=$id and status=0)");
+
+        $up->update([
+            'status'=>1,
+            'fin_consultation'=>Carbon::now()
+        ]);
+        return back();
+    }
     
 }

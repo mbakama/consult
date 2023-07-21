@@ -15,11 +15,13 @@ class Message extends Model
         'user_received',
         'user_sent'
     ];
-
+    private static $encypt = "AES-256-CBC";
+    private static $message ="";
     public function from()
     { 
             return $this->belongsTo(User::class,'user_sent'); 
     }
+    
     
     
 }

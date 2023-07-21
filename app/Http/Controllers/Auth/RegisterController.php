@@ -73,6 +73,9 @@ class RegisterController extends Controller
         $defautImage = 'images/6596121.png';
         $useType = 'doctor';
         $useType1 = 'patient.e'; 
+
+        // apres verification de l'existance des users ou non dans la table User
+        // on attribue un usetype au premier à se connecter comme doctor et les autres seront des patients
          if ($this->respo->verification()->count()<1) { 
             return User::create([
                 'name' => $data['name'],

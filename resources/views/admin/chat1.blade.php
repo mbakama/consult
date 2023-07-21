@@ -70,7 +70,8 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="card-body py-0 mb-3" data-simplebar style="max-height: 546px">
-                                            @include('admin.users',['all',$all])
+                                            @include('admin.users',['all',$all,'unread'=>$unread])
+
 
                                         </div>
                                         <!-- end slimscroll-->
