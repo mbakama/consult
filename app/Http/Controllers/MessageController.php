@@ -87,7 +87,7 @@ class MessageController extends Controller
      * Display the specified resource.
      */
     public function show(User $user)
-    { dd(['unread'=>$this->respo->unreadMessageCount($this->auth->user()->id)]);
+    { 
         return view('pages.discusions',[
                 'all' => $this->respo->getConversationDoctor($this->auth->user()->id),
                 #'alls'=>$this->respo->getConversationUser($this->auth->user()->id),

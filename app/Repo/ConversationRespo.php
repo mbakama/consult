@@ -84,7 +84,7 @@ class ConversationRespo
    {
     return $this->m->newQuery()
     ->where('user_received',$userId)->groupBy('user_sent')
-    ->selectRaw(("user_sent,COUNT(id) as count"))->whereRaw("(read_at = Null)")->get();
+    ->selectRaw(("user_sent,COUNT(id) as count"))->whereRaw("(read_at is Null)")->pluck('count','user_sent');
    }
 }
 
