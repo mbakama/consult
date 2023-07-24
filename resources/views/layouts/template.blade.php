@@ -15,7 +15,7 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
-    {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- App favicon -->
@@ -67,7 +67,7 @@
 
     <!-- Projects Analytics Dashboard App js -->
     <script src="{{ url('assets/js/pages/demo.dashboard-projects.js') }}"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
     <!-- App js -->
     <script src="{{ url('assets/js/app.min.js') }}"></script>
     <script src="{{ asset('assets/js/style.js') }}"></script>
@@ -75,7 +75,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"
         integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="{{ asset('js/cust.min.js') }}"></script>
+    <script src="{{ asset('js/cust.min.js') }}"></script>
+   
     {{-- @if (Session::has('success'))
     // Override global options
         <script>
@@ -93,7 +94,10 @@
                 .catch(function(error) {
                     console.log(error);
                 });
-        }; 
+        };
+    </script>
+    <script>
+        console.log(moment().format());
     </script>
 </body>
 

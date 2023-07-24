@@ -13,9 +13,8 @@
                     <div class="page-title-box">
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Hyper</a></li>
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li>
-                                <li class="breadcrumb-item active">Data Tables</li>
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li> 
+                                <li class="breadcrumb-item active">Liste de patients</li>
                             </ol>
                         </div>
                         <h4 class="page-title">Liste de patients</h4>
@@ -123,7 +122,7 @@
                                                         <div class="dropdown-menu dropdown-menu-end">
                                                             <!-- <a class="dropdown-item" href="#"><i class="me-2 text-muted vertical-middle"><iconify-icon icon="mdi:share-variant"></iconify-icon></i>Share</a> -->
                                                             <!-- <a class="dropdown-item" href="#"><i class="me-2 text-muted vertical-middle"><iconify-icon icon="mdi:link"></iconify-icon></i>Get Sharable Link</a> -->
-                                                            <a class="dropdown-item" href="#"><i class="me-2 text-success vertical-middle"><iconify-icon icon="mdi:pencil"></iconify-icon></i>Rename</a>
+                                                            <a class="dropdown-item" href="{{ route('admin.conversations.show', $item->id) }}"><i class="me-2 text-success vertical-middle"><iconify-icon icon="mdi:pencil"></iconify-icon></i>Envoyer un message</a>
                                                             <a class="dropdown-item" href="{{ route('admin.list-patient',$item->id) }}"><i class="me-2 text-muted vertical-middle"><iconify-icon icon="mdi:eye"></iconify-icon></i>View</a>
                                                             <form action="{{ route('deleted',$item->id) }}" method="post">
                                                                 @csrf
