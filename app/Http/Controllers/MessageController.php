@@ -12,6 +12,7 @@ use App\Repo\ConversationRespo;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Response;
 
 class MessageController extends Controller
 {
@@ -53,7 +54,23 @@ class MessageController extends Controller
         return view('pages.chat1',['all' => $this->respo->getConversationDoctor($this->auth->user()->id),'unread'=>$this->respo->unreadMessageCount($this->auth->user()->id)]);
     }
 
+   public function search(Request $request)
+   {
+       if ($request->ajax()) {
+           $output = "";
 
+           $products = DB::table('users')
+           ->where('name','LIKE','%'.$request->search."%")->get();
+            if ($products) {
+                foreach($products as $key =>$produit){
+                    $output.='<tr>'.
+                    '<td>'.$produit->name.'</td>'.'</tr>';
+                }
+
+                return Response($output);
+            }
+        }
+   }
     /**
      * Store a newly created resource in storage.
      */

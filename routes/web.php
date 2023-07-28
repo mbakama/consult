@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\MessageController;
-use App\Http\Controllers\UserController;
+
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes(['verify'=>true]);
 
@@ -50,3 +52,4 @@ Route::put('users/update',[UserController::class,'update_image'])->name('update'
 Route::post('envoi',[MessageController::class,'store'])->name('envoi')->middleware(['verified','auth']);
 
 Route::put('consult/{id}',[UserController::class,'update_status'])->name('update_status_user')->middleware(['auth','verified']);
+Route::get('search',[MessageController::class,'search']);

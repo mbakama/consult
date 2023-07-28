@@ -15,7 +15,7 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- App favicon -->
@@ -97,7 +97,26 @@
         };
     </script>
     <script>
-        console.log(moment().format());
+        $('#search').on('keyup', function(){
+            $value = $(this).val();
+            // alert($value);
+
+            $.ajax({
+                type : 'get',
+                url : '{{ URL::to('search') }}',
+                data :{'search':$value},
+                success : function(data){
+                    console.log(data);
+                }
+            })
+        })
+    </script>
+    <script>
+        $.ajaxSetup(
+            {
+                headers : { 'csrftoken':'{{ csrf_token() }}'}
+            }
+        );
     </script>
 </body>
 

@@ -53,9 +53,11 @@
                                 <div class="tab-pane show active card-body pb-0" id="newpost">
                                     <!-- start search box -->
                                     <div class="app-search">
-                                        <form>
+                                        <form action="" method="POST" role="search">
+                                            @csrf
+                                            
                                             <div class="mb-2 w-100 position-relative">
-                                                <input type="search" id="search" class="form-control"
+                                                <input type="text" name="q" id="search" class="form-control"
                                                     placeholder="People, groups & messages..." />
                                                 <span class="search-icon">
                                                     <iconify-icon icon="mdi:magnify"></iconify-icon>
@@ -70,6 +72,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="card-body py-0 mb-3" data-simplebar style="max-height: 546px">
+                                            
                                             @include('admin.users',['all',$all])
 
                                         </div>
