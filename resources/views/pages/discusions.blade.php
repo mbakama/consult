@@ -96,7 +96,7 @@
                     <div class="card">
                         <div class="card-body px-0 pb-0">
                             <ul class="conversation-list px-3" data-simplebar style="max-height: 554px">
-                                <li class="clearfic mb-5">
+                                <li class="clearfic mb-4">
                                     <div class="chat-avatar">
                                        <img style="margin-bottom:-10px; position: relative;" src="@if ($user->photo==null) {{ asset("storage/images/6596121.png")}} @else {{ asset("storage/$user->photo")}} @endif" class="rounded"
                                            alt="Shreyu N" /> 

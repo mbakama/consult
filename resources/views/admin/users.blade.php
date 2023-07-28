@@ -3,12 +3,13 @@
         <a href="{{ route('admin.conversations.show', $item->id) }}" class="text-body">
             <div class="d-flex align-items-start mt-1 p-2">
                 <img src="{{ $item->url_image() }}"
-                    class="me-2 rounded-circle" height="40" width="45" alt="{{ $item->name }}" />
+                    class="me-2 rounded-circle" height="40" width="40" alt="{{ $item->name }}" />
                 @if ($item->isUserOnline())
-                    <iconify-icon class="bg-white" icon="mdi:circle"
-                        style="color: rgb(17, 255, 17);position:absolute;border:2px solid white;border-radius:50%; font-size:10px; margin-left:0px; margin-bottom:-1px">
-                    </iconify-icon>
-                    <span>
+                <iconify-icon class="bg-white font-11" icon="mdi:circle"
+                style="color: rgb(17, 255, 17);position:absolute;border:2px solid white;border-radius:50%; margin-left:0px; margin-bottom:-1px">
+                   </iconify-icon>
+                        
+                    
                     @else
                         <iconify-icon class="bg-white font-11" icon="mdi:circle"
                             style="color: rgb(255, 112, 17);position:absolute;border:2px solid white;border-radius:50%; margin-left:0px; margin-bottom:-1px">

@@ -51,7 +51,7 @@
                     <nav class="navbar navbar-expand-lg custom_nav-container ">
                         <a class="navbar-brand" href="index.html">
                             <span>
-                                Orthoc
+                                Consult
                             </span>
                         </a>
 
@@ -64,20 +64,20 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav">
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="index.html">Home <span
+                                    <a class="nav-link" href="index.html">Acceuil <span
                                             class="sr-only">(current)</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="about.html"> About</a>
+                                    <a class="nav-link" href="about.html"> A propos</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="departments.html">Departments</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="doctors.html">Doctors</a>
+                                    <a class="nav-link" href="doctors.html">Docteurs</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="contact.html">Contact Us</a>
+                                    <a class="nav-link" href="contact.html">Contact</a>
                                 </li>
                                 <li class="nav-item">
                                     
@@ -118,13 +118,11 @@
                                     <div class="col-md-7">
                                         <div class="detail-box">
                                             <h1>
-                                                We Provide Best Healthcare
+                                                Nous fournissons les meilleurs soins de santé
                                             </h1>
                                             <p>
-                                                Explicabo esse amet tempora quibusdam laudantium, laborum eaque magnam
-                                                fugiat hic? Esse dicta aliquid error repudiandae earum suscipit fugiat
-                                                molestias, veniam, vel architecto veritatis delectus repellat modi
-                                                impedit sequi.
+                                               Connectez vous sur notre planeforme et retrouver le medecin le plus proche de chez vous. pour avoir une prise en charge de votre santé
+                                               la santé est cruciale pour chacun de nous alors profitons de ça.
                                             </p>
                                             <div class="btn-box">
                                                 <a href="" class="btn1">
